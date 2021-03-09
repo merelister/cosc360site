@@ -1,14 +1,7 @@
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+header{
+    position:-ms-page;
+    top: 0;
 }
-li {
-    display: inline;
-    float: left;
-}
-
 .search-container {
     float: none;
     display: block;
@@ -33,10 +26,51 @@ li {
     cursor: pointer;
 }
 
-
-.user-icon {
-    display: inline;
-    margin: 0 auto;
-    height: 100%;
+.usericon{
+    height: 3em;
+    width: 3em;
     float: right;
+    position: relative;
+    top: -2.5em
 }
+
+#searchcontainer{
+    height: 0em;
+}
+
+form.example input[type=text] {
+    font-size: 17px;
+    float: left;
+    width: 80%;
+    position: relative;
+    font-size: 1em;
+    top: -1.5em;
+    height: 3em;
+    border: none;
+    border-radius: 0;
+  }
+  
+  form.example button {
+    float: left;
+    width: 20%;
+    background: #3f3f3f;
+    color: white;
+    border-left: none;
+    cursor: pointer;
+    position: relative;
+    font-size: 1em;
+    top: -1.5em;
+    height: 3em;
+    border-radius: 0;
+  }
+  
+  form.example button:hover {
+    background: #a0a0a0;
+  }
+  
+  form.example::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+
