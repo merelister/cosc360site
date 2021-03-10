@@ -91,3 +91,9 @@ a:hover {
     height: 100%;
     position: right;
 }
+.fa-pencil {
+    position: relative;
+    top: -0.3em;
+    left: -1.2em;
+    background-color: rgb(111, 211, 173);
+}
