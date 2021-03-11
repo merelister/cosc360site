@@ -1,0 +1,69 @@
+create table User (
+  Username char(15) primary key not null,
+  Displayname char(20) not null,
+  Email text not null,
+  Avatar blob,
+  Password text not null,
+  Rank text default 'User');
+
+PRAGMA foreign_keys = ON;
+
+CREATE TABLE Post (
+  postId int primary key,
+  threadID Type,
+  postDate Type,
+  content text
+);
+
+CREATE TABLE Thread (
+  threadID int primary key,
+  title text,
+  firstPostId int,
+  creationDate int,
+  isStickied int,
+  category text,
+  foreign key(firstPostId) references Post(postId)
+);
+
+
+CREATE TABLE UserMakesPost (
+  postId int primary key,
+  threadId int,
+  userId char(15),
+  foreign key(postId) references Post(postId),
+  foreign key(threadId) references Thread(threadId),
+  foreign key(userId) references User(Username)
+);
+
+CREATE TABLE CreateThread (
+  userId char(15),
+  threadId int,
+  foreign key(userId) references User(Username),
+  foreign key(threadId) references Thread(threadId)
+);
+
+
+CREATE TABLE ThreadContainsPost (
+  threadId int,
+  postId int,
+  foreign key(threadId) references Thread(threadId),
+  foreign key(postId) references Post(postId)
+);
+
+
+
+CREATE TABLE Message (
+  msgID,
+  lastMsg,
+  Topic,
+  content
+);
+
+CREATE TABLE sendMessage (
+  senderId char(15),
+  receiverId char(15),
+  messageId int,
+  foreign key(senderId) references User(Username),
+  foreign key(receiverId) references User(Username),
+  foreign key(messageId) references Message(msgId)
+);
