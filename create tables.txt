@@ -1,30 +1,33 @@
 create table User (
-  Username char(15) primary key not null,
-  Displayname char(20) not null,
-  Email text not null,
+  userId varchar(15),
+  Displayname varchar(20),
+  Email varchar(50),
   Avatar blob,
-  Password text not null,
-  Rank text default 'User');
+  Password varchar(255),
+  Role boolean
+  primary key(userId));
 
 PRAGMA foreign_keys = ON;
 
 CREATE TABLE Post (
-  postId int primary key,
-  threadID Type,
-  postDate Type,
-  content text
+  postId int auto_increment,
+  threadId int,
+  postDate date,
+  content text,
+  primary key(postId),
+  foreign key(threadId) references Thread(threadId)
 );
-
 CREATE TABLE Thread (
   threadID int primary key,
   title text,
   firstPostId int,
   creationDate int,
-  isStickied int,
+  isStickied boolean,
   category text,
   foreign key(firstPostId) references Post(postId)
 );
-
+ALTER TABLE Post 
+add foreign key(threadId) references Thread(threadId);
 
 CREATE TABLE UserMakesPost (
   postId int primary key,
