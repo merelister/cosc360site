@@ -4,7 +4,8 @@ create table User (
   Email varchar(50),
   Avatar blob,
   Password varchar(255),
-  Role boolean
+  Role boolean,
+  joinDate date
   primary key(userId));
 
 PRAGMA foreign_keys = ON;
@@ -38,7 +39,7 @@ CREATE TABLE UserMakesPost (
   foreign key(userId) references User(Username)
 );
 
-CREATE TABLE CreateThread (
+CREATE TABLE UserCreatesThread (
   userId char(15),
   threadId int,
   foreign key(userId) references User(Username),
@@ -59,10 +60,11 @@ CREATE TABLE Message (
   msgID,
   lastMsg,
   Topic,
+  sendDate,
   content
 );
 
-CREATE TABLE sendMessage (
+CREATE TABLE UserSendsMessage (
   senderId char(15),
   receiverId char(15),
   messageId int,

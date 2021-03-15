@@ -124,6 +124,7 @@
       <path value="$PROJECT_DIR$/backend/vendor/laravel/tinker" />
       <path value="$PROJECT_DIR$/backend/vendor/laravel/sail" />
       <path value="$PROJECT_DIR$/backend/vendor/laravel/framework" />
+      <path value="$PROJECT_DIR$/backend/vendor/kitloong/laravel-migrations-generator" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.3" />
