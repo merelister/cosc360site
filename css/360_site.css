@@ -1,8 +1,3 @@
-header{
-    position:-ms-page;
-    top: 0;
-}
-
 .postblock {
     display: flex;
     flex-direction: column;
@@ -17,7 +12,7 @@ header{
 }
 
 .posthistory{
-    border-radius: 15px;
+    border-radius: 0.5em;
     border: 2px solid rgb(134, 134, 134);
     padding: 1em;
 }
@@ -29,9 +24,13 @@ header{
 }
 
 .categories{
-    border-radius: 15px;
-    border: 2px solid rgb(134, 134, 134);
+    border-radius: 0.5em;
+    border: 0.15em solid rgb(134, 134, 134);
     padding: 1em;
+    margin-top: 0.3em;
+    text-align: center;
+    font-weight:700;
+    color: white;
 }
 
 .layout {
@@ -40,10 +39,10 @@ header{
 }
 
 .post {
-    border-radius: 15px;
-    border: 2px solid rgb(134, 134, 134);
-    padding: 1em;
-    margin: 1em;
+    border-radius: 0.5em;
+    border: 0.15em solid rgb(134, 134, 134);
+    padding: 0.7em;
+    margin: 0.9em;
 }
 
 a {
@@ -52,16 +51,23 @@ a {
 
 a:hover {
     color: rgb(111, 211, 173);
-    /* background-color: rgb(56, 56, 56); */
     text-decoration: none;
 }
 
 .usericon{
-    height: 3em;
-    width: 3em;
+    border-radius: 0.5em;
+    height: 3.5em;
+    width: 3.5em;
     float: right;
     position: relative;
-    top: -2.5em
+    top: 1em
+}
+
+.usericon:hover {
+    transition: .2s ease;
+    height: 3.7em;
+    width: 3.7em;
+    top: 0.9em
 }
 
 #searchcontainer{
@@ -102,4 +108,33 @@ form.example input[type=text] {
     content: "";
     clear: both;
     display: table;
+  }
+
+
+  #sports{
+    background-image: url(../images/ball.jpg);
+    background-repeat: no-repeat;
+    background-size: 105%;
+    background-position: 0em; 
+  }
+
+  #news{
+    background-image: url(../images/city.jpg);
+    background-repeat: no-repeat;
+    background-size: 105%;
+    background-position: 0em;
+  }
+
+  #art{
+    background-image: url(../images/paint.jpg);
+    background-repeat: no-repeat;
+    background-size: 105%;
+    background-position: 0em;
+  }
+
+  #nature{
+    background-image: url(../images/nature.jpg);
+    background-repeat: no-repeat;
+    background-size: 105%;
+    background-position: 0em;
   }
