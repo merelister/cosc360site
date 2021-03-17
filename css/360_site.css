@@ -11,6 +11,12 @@
     margin: 1em;
 }
 
+@media screen and (max-width: 800px) {
+  .sidebar {
+    display: none;
+  }
+}
+
 .posthistory{
     border-radius: 0.5em;
     border: 2px solid rgb(134, 134, 134);
@@ -43,6 +49,7 @@
     border: 0.15em solid rgb(134, 134, 134);
     padding: 0.7em;
     margin: 0.9em;
+
 }
 
 a {
@@ -54,21 +61,6 @@ a:hover {
     text-decoration: none;
 }
 
-.usericon{
-    border-radius: 0.5em;
-    height: 3.5em;
-    width: 3.5em;
-    float: right;
-    position: relative;
-    top: 1em
-}
-
-.usericon:hover {
-    transition: .2s ease;
-    height: 3.7em;
-    width: 3.7em;
-    top: 0.9em
-}
 
 #searchcontainer{
     height: 0em;
@@ -110,7 +102,6 @@ form.example input[type=text] {
     display: table;
   }
 
-
   #sports{
     background-image: url(../images/ball.jpg);
     background-repeat: no-repeat;
@@ -137,4 +128,52 @@ form.example input[type=text] {
     background-repeat: no-repeat;
     background-size: 105%;
     background-position: 0em;
+  }
+
+  .dropdown {
+    height: 3.5em;
+    width: 3.5em;
+    float: right;
+    position: relative;
+    top: 1em
+  }
+
+  .post .dropdown {
+  
+  }
+
+  .post .dropdown-content {
+    display: none;
+  }
+
+
+  .usericon{
+    border-radius: 0.5em;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    top: 3.5em;
+    right: 0.4em;
+    background-color: #eeeeee;
+    min-width: 160px;
+    overflow: auto;
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown-content a:hover {background-color: rgb(133, 133, 133);}
+
+  .show {display: block;}
+
+  .dark-mode {
+    background-color: rgb(31, 31, 31);
+    color: white;
   }
