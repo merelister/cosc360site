@@ -17,7 +17,10 @@ Route::resource('posts', 'PostController');
 Route::resource('users', 'UserController');
 Route::resource('threads', 'ThreadController');
 Route::resource('messages', 'MessageController');
-
+Route::resource('userPost', 'UserPostController');
+Route::resource('threadPost', 'ThreadPostController');
+Route::resource('userThread', 'UserThreadController');
+Route::resource('userMessage', 'UserMessageController');
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
