@@ -1,17 +1,24 @@
+header{
+    position:-ms-page;
+    top: 0;
+}
+
 .postblock {
     display: flex;
     flex-direction: column;
     flex:3;
     justify-content: space-between;
 }
+
 .sidebar {
     flex:1;
     margin-left: 3em;
     margin: 1em;
 }
+
 .posthistory{
     border-radius: 15px;
-    border: 2px solid white;
+    border: 2px solid rgb(134, 134, 134);
     padding: 1em;
 }
 
@@ -19,77 +26,46 @@
     display: flex;
     flex-flow: column wrap;
     justify-content: space-between;
-    
-
 }
 
 .categories{
     border-radius: 15px;
-    border: 2px solid white;
+    border: 2px solid rgb(134, 134, 134);
     padding: 1em;
-   
 }
 
 .layout {
     display: flex;
-    flex-direction: row;
-    
+    flex-direction: row; 
 }
 
 .post {
     border-radius: 15px;
-    border: 2px solid white;
+    border: 2px solid rgb(134, 134, 134);
     padding: 1em;
     margin: 1em;
 }
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-}
-li {
-    display: inline;
-    float: left;
-}
 
-.search-container {
-    display: block;
-    text-align: left;
-    width: 100%;
-    margin: 0;
-    padding: 14px;
-}
-
-.search-container button:hover {
-    background: rgb(37, 59, 121);
-}
-
-.search-container button {
-    float: right;
-    padding: 6px 10px;
-    margin-top: 8px;
-    margin-right: 16px;
-    background: rgb(121, 121, 121);
-    font-size: 17px;
-    border: none;
-    cursor: pointer;
-}
 a {
- 
     text-decoration: none;
 }
+
 a:hover {
     color: rgb(111, 211, 173);
     /* background-color: rgb(56, 56, 56); */
     text-decoration: none;
 }
 
-.user-icon {
-    display: inline;
-    margin: 0 auto;
-    height: 100%;
-    position: right;
+.usericon{
+    height: 3em;
+    width: 3em;
+    float: right;
+    position: relative;
+    top: -2.5em
+}
+
+#searchcontainer{
+    height: 0em;
 }
 .fa-pencil {
     position: relative;
@@ -97,3 +73,39 @@ a:hover {
     left: -1.2em;
     background-color: rgb(111, 211, 173);
 }
+
+form.example input[type=text] {
+    font-size: 17px;
+    float: left;
+    width: 80%;
+    position: relative;
+    font-size: 1em;
+    top: -1.5em;
+    height: 3em;
+    border: none;
+    border-radius: 0;
+  }
+  
+  form.example button {
+    float: left;
+    width: 20%;
+    background: #3f3f3f;
+    color: white;
+    border-left: none;
+    cursor: pointer;
+    position: relative;
+    font-size: 1em;
+    top: -1.5em;
+    height: 3em;
+    border-radius: 0;
+  }
+  
+  form.example button:hover {
+    background: #a0a0a0;
+  }
+  
+  form.example::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
