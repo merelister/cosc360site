@@ -1,0 +1,74 @@
+create table User (
+  userId varchar(15),
+  Displayname varchar(20),
+  Email varchar(50),
+  Avatar blob,
+  Password varchar(255),
+  Role boolean,
+  joinDate date
+  primary key(userId));
+
+PRAGMA foreign_keys = ON;
+
+CREATE TABLE Post (
+  postId int auto_increment,
+  threadId int,
+  postDate date,
+  content text,
+  primary key(postId),
+  foreign key(threadId) references Thread(threadId)
+);
+CREATE TABLE Thread (
+  threadID int primary key,
+  title text,
+  firstPostId int,
+  creationDate int,
+  isStickied boolean,
+  category text,
+  foreign key(firstPostId) references Post(postId)
+);
+ALTER TABLE Post 
+add foreign key(threadId) references Thread(threadId);
+
+CREATE TABLE UserMakesPost (
+  postId int primary key,
+  threadId int,
+  userId char(15),
+  foreign key(postId) references Post(postId),
+  foreign key(threadId) references Thread(threadId),
+  foreign key(userId) references User(Username)
+);
+
+CREATE TABLE UserCreatesThread (
+  userId char(15),
+  threadId int,
+  foreign key(userId) references User(Username),
+  foreign key(threadId) references Thread(threadId)
+);
+
+
+CREATE TABLE ThreadContainsPost (
+  threadId int,
+  postId int,
+  foreign key(threadId) references Thread(threadId),
+  foreign key(postId) references Post(postId)
+);
+
+
+
+CREATE TABLE Message (
+  msgID,
+  lastMsg,
+  Topic,
+  sendDate,
+  content
+);
+
+CREATE TABLE UserSendsMessage (
+  senderId char(15),
+  receiverId char(15),
+  messageId int,
+  foreign key(senderId) references User(Username),
+  foreign key(receiverId) references User(Username),
+  foreign key(messageId) references Message(msgId)
+);
