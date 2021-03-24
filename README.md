@@ -56,3 +56,11 @@ You can open up your browser to `http://127.0.0.1:8000/360_site.html` to check i
 Note: `backend/server.php` takes in a url, and then tries to run that file in the `public` directory. So when you visit the url above, you're actually opening up the file at `projectFolder/backend/public/360_site.html`.
 
 This means that all our frontend files need to be in the `public` directory.
+
+##Migrating the database(s)
+
+Make sure the database setting are correct in the .env file. Then, in the backend directory run the command
+
+```
+php artisan migrate
+```
