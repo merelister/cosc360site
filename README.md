@@ -57,7 +57,7 @@ Note: `backend/server.php` takes in a url, and then tries to run that file in th
 
 This means that all our frontend files need to be in the `public` directory.
 
-##Migrating the database(s)
+## Migrating the database(s)
 
 Make sure the database setting are correct in the .env file. Then, in the backend directory run the command
 
