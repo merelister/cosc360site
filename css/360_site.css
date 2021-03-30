@@ -1,4 +1,4 @@
-.postblock {
+  .postblock {
     display: flex;
     flex-direction: column;
     flex:3;
@@ -124,8 +124,6 @@ form.example input[type=text] {
     }
   }
 
-
-
   form.example button:hover {
     background: #a0a0a0;
   }
@@ -174,7 +172,9 @@ form.example input[type=text] {
   }
 
   .usericon{
+    position: absolute;
     border-radius: 0.5em;
+    z-index : 10;
   }
 
   .dropdown-content {
