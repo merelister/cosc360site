@@ -1,11 +1,7 @@
 var nightMode = false;
 
 function dropdown(){
-    document.getElementById("myDropdown").classList.toggle("show")
-}
-
-function dropdown1(){
-    document.getElementById("myDropdown1").classList.toggle("show")
+    document.getElementById("myDropdown").classList.toggle("show");
 }
 
 window.onclick = function(event) {

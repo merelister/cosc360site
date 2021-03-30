@@ -2,7 +2,12 @@
     display: flex;
     flex-direction: column;
     flex:3;
-    justify-content: space-between;
+    justify-content: center;
+}
+
+header {
+  padding: 0em;
+  height: 7em;
 }
 
 .sidebar {
@@ -49,7 +54,6 @@
     border: 0.15em solid rgb(134, 134, 134);
     padding: 0.7em;
     margin: 0.9em;
-
 }
 
 a {
@@ -61,37 +65,67 @@ a:hover {
     text-decoration: none;
 }
 
-
 #searchcontainer{
     height: 0em;
+}
+
+.example{
+  position: relative;
+  top: -4.8em;
 }
 
 form.example input[type=text] {
     font-size: 17px;
     float: left;
-    width: 80%;
+    width: 46%;
     position: relative;
     font-size: 1em;
-    top: -1.5em;
+    left: 20%;
     height: 3em;
     border: none;
     border-radius: 0;
   }
   
   form.example button {
-    float: left;
-    width: 20%;
+    float: right;
+    width: 10%;
     background: #3f3f3f;
     color: white;
     border-left: none;
     cursor: pointer;
     position: relative;
     font-size: 1em;
-    top: -1.5em;
+    left: -24%;
     height: 3em;
     border-radius: 0;
   }
+
+  @media screen and (max-width: 1600px) {
+    form.example input[type=text] {
+      width: 86%;
+      left: 2%;
+    }
+    form.example button {
+      width: 10%;
+      left: -2%;
+    }
+    .example{
+      top:-1.5em;
+    }
+    header{
+      height: 10em;
+    }
+  }
   
+
+  @media screen and (min-width: 1600px) {
+    .postblock{
+      margin-left: -20em;
+    }
+  }
+
+
+
   form.example button:hover {
     background: #a0a0a0;
   }
@@ -131,21 +165,13 @@ form.example input[type=text] {
   }
 
   .dropdown {
+    right: 2em;
     height: 3.5em;
     width: 3.5em;
     float: right;
     position: relative;
     top: 1em
   }
-
-  .post .dropdown {
-  
-  }
-
-  .post .dropdown-content {
-    display: none;
-  }
-
 
   .usericon{
     border-radius: 0.5em;
@@ -176,4 +202,10 @@ form.example input[type=text] {
   .dark-mode {
     background-color: rgb(31, 31, 31);
     color: white;
+  }
+
+  #logo{
+    padding-left: 2em;
+    width: 18em; 
+    height: auto;
   }
