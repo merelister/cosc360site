@@ -1,3 +1,12 @@
+DROP TABLE IF EXISTS `User`;
+DROP TABLE IF EXISTS `Post`;
+DROP TABLE IF EXISTS `Thread`;
+DROP TABLE IF EXISTS `UserMakesPost`;
+DROP TABLE IF EXISTS `UserCreatesThread`;
+DROP TABLE IF EXISTS `ThreadContainsPost`;
+DROP TABLE IF EXISTS `Message`;
+DROP TABLE IF EXISTS `UserSendsMessage`;
+
 create table User (
   userId varchar(15),
   Displayname varchar(20),
@@ -5,10 +14,9 @@ create table User (
   Avatar blob,
   Password varchar(255),
   Role boolean,
-  joinDate date
-  primary key(userId));
-
-PRAGMA foreign_keys = ON;
+  joinDate date,
+  PRIMARY KEY (userId)
+  );
 
 CREATE TABLE Post (
   postId int auto_increment,
@@ -19,12 +27,13 @@ CREATE TABLE Post (
   foreign key(threadId) references Thread(threadId)
 );
 CREATE TABLE Thread (
-  threadID int primary key,
+  threadID int,
   title text,
   firstPostId int,
   creationDate int,
   isStickied boolean,
   category text,
+  primary key (threadID),
   foreign key(firstPostId) references Post(postId)
 );
 ALTER TABLE Post 
@@ -57,11 +66,11 @@ CREATE TABLE ThreadContainsPost (
 
 
 CREATE TABLE Message (
-  msgID,
-  lastMsg,
-  Topic,
-  sendDate,
-  content
+  msgID int,
+  lastMsg int,
+  Topic char(15),
+  sendDate DATETIME,
+  content char(250)
 );
 
 CREATE TABLE UserSendsMessage (
