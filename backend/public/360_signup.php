@@ -9,15 +9,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/360_site.css">
     <link rel="stylesheet" href="css/360_signup.css">
-    <script type="text/javascript" src="js/360_signup.js"></script>
-
+    <script type="text/javascript" src="script/360_signup.js"></script>
+    <script type="text/javascript" src="script/360_mainpage.js"></script>
 </head>
 
 <body>
-  <header>
-    <h1>Forum</h1>
-    <img src="https://thispersondoesnotexist.com/image" class="usericon"> 
-  </header>
+      <?php include "360_header.php"; echo $header; ?>
 
         <form action="register.php">
             <div class="signupcontainer">
@@ -43,7 +40,7 @@
             </div>
           
             <div class="signupcontainer">
-              <p>Already have an account? <a href="360_signin.html">Sign in</a>.</p>
+              <p>Already have an account? <a href="360_signin.php">Sign in</a>.</p>
             </div>
           </form>
 

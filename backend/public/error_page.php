@@ -8,17 +8,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/360_site.css">
+    <script type="text/javascript" src="script/360_mainpage.js"></script>
 </head>
 
 <body>
-    <!--TODO: Header is reusable code -->
-    <header>
-      <h1>Forum</h1>
-      <img src="https://thispersondoesnotexist.com/image" class="usericon"> 
-    </header>
+        <?php include "360_header.php"; echo $header; ?>
+    
 
         <main>
             <h1>Oops, this page does not exist.</h1>
-            <p>Return to <a href="360_site.html">home page.</a></p>
+            <p>Return to <a href="360_site.php">home page.</a></p>
         </main>
+
 </body>
