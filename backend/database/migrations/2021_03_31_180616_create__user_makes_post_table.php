@@ -13,9 +13,10 @@ class CreateUserMakesPostTable extends Migration
      */
     public function up()
     {
-        Schema::create('_user_makes_post', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('user_makes_post', function (Blueprint $table) {
+            $table->foreignId('postID')->constrained('post')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('threadID')->constrained('thread')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('userID')->constrained('user')->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 

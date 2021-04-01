@@ -13,9 +13,9 @@ class CreateUserSendsMessageTable extends Migration
      */
     public function up()
     {
-        Schema::create('_user_sends_message', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('user_sends_message', function (Blueprint $table) {
+            $table->foreignId('msgID')->primary()->constrained('message')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('userID')->constrained('user')->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 

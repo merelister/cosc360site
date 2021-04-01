@@ -13,9 +13,9 @@ class CreateUserCreatesThreadTable extends Migration
      */
     public function up()
     {
-        Schema::create('_user_creates_thread', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('user_creates_thread', function (Blueprint $table) {
+            $table->foreignId('userID')->constrained('user')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('threadID')->constrained('thread')->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 

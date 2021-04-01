@@ -13,9 +13,9 @@ class CreateThreadContainsPostTable extends Migration
      */
     public function up()
     {
-        Schema::create('_thread_contains_post', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('thread_contains_post', function (Blueprint $table) {
+            $table->foreignId('threadID')->constrained('thread')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('postID')->constrained('post')->cascadeOnUpdate()->cascadeOnDelete();
         });
     }
 

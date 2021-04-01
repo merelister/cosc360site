@@ -13,9 +13,13 @@ class CreateThreadTable extends Migration
      */
     public function up()
     {
-        Schema::create('_thread', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('thread', function (Blueprint $table) {
+            $table->id('threadID')->primary();
+            $table->string('title');
+            $table->timestamp('postDate');
+            $table->foreignId('firstPostID')->nullable()->constrained('post')->cascadeOnUpdate();
+            $table->boolean('isStuck');
+            $table->string('category')->nullable();
         });
     }
 

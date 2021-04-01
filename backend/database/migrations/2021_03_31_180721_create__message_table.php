@@ -13,9 +13,12 @@ class CreateMessageTable extends Migration
      */
     public function up()
     {
-        Schema::create('_message', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::create('message', function (Blueprint $table) {
+            $table->id('msgID')->primary();
+            $table->unsignedBigInteger('lastMsg');
+            $table->timestamp('sendDate');
+            $table->string('topic');
+            $table->string('content');
         });
     }
 

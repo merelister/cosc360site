@@ -14,9 +14,12 @@ class CreatePostTable extends Migration
     public function up()
     {
         Schema::create('post', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->id('postID');
+            $table->foreignId('threadID')->constrained('thread')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->timestamp('postDate');
+            $table->string('content');
         });
+        DB::unprepared("ALTER TABLE 'post' DROP PRIMARY KEY, ADD PRIMARY KEY (  'postID' ,  'threadID' )");
     }
 
     /**
