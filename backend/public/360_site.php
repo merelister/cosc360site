@@ -59,7 +59,7 @@
 
     <div class="sidebar">
         <div class="posthistory">
-            <h3>@avguser #Jane Doe</h3>
+            <a href="profile.html"><h3>@avguser #Jane Doe</h3></a>
             <p>No more iPhones?</p>
             <p>First Post! :)</p>
             <p>First Post! :)</p>
