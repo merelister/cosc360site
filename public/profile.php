@@ -32,6 +32,7 @@
     ?>
 
     <i class="fa fa-pencil" aria-label="Edit username"></i>
+   <!-- TODO: get posthistory of user  -->
     <div class="posthistory sidebar">
         <p>No more iPhones?</p>
         <p>First Post! :)</p>
