@@ -5,7 +5,7 @@
                 <a onclick="dropdown()"><img src="https://thispersondoesnotexist.com/image" class="usericon"></a>
                 <div id="myDropdown" class="dropdown-content">
                     <a href="profile.php">Profile</a>
-                    <a href="#">➕ New Post</a>
+                    <a href="createThread.php">➕ New Post</a>
                     <a onclick="toggleNightMode()" id="nightMode">Night Mode</a>
                 </div>
             </div>

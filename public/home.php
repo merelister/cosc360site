@@ -17,7 +17,7 @@
 
     <div class="layout">
         <div class="postblock">
-            <a href="360_site_airplanes.html">
+            <a href="thread.php?thread=5">
                 <div class="post">
                     <h3>Airplanes?</h3>
                     <p>Lorem ipsum</p>
