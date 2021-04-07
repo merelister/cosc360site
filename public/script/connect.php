@@ -1,4 +1,5 @@
 <?php
+function connect() {
     // connect to db
     $host = "localhost";
     $database = "360site";
@@ -12,10 +13,7 @@ if($error != null)
 {
   $output = "<p>Unable to connect to database!</p>";
   exit($output);
+} else return $connection;
 }
 
-function query($sql) {
-    return mysqli_query($connection, $sql);
-}
-mysqli_close($connection);
 ?>

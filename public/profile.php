@@ -12,27 +12,26 @@
 </head>
 
 <body>
-    <header>
-        <ul>
-            <li><a href="360_site.html"><h1>Forum</h1></a></li> 
-        <li>
-            <div class="search-container">
-            <form action="/action_page.php">
-              <input type="text" placeholder="Search.." name="search">
-              <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-          </div>
-        </li>
-        <li><a href="profile.html"><img src="https://thispersondoesnotexist.com/image" width="50" height="50" class="user-icon"></a></li>
-        </ul>
-        
-        <br>
-        </header>
+<?php include "header.php"; echo $header; ?>
+<!-- TODO: display blob as image  -->
     <img src="https://thispersondoesnotexist.com/image" width="150" height="150" class="user-icon">
     <i class="fa fa-pencil" aria-label="Edit profile picture"></i>
-    <h1>@username</h1>
+
+    <?php include "script/connect.php";
+    $connection = connect();
+   // TODO: get userId of logged in user
+    $sql = "SELECT * FROM user WHERE userId='1'";
+    $results = mysqli_query($connection, $sql);
+    $row = mysqli_fetch_assoc($results);
+    mysqli_free_result($results);
+    mysqli_close($connection);
+
+
+    echo "<h1>" . $row["displayName"] . "</h1>";
+    echo "<p>" . $row["email"] . "</p>";
+    ?>
+
     <i class="fa fa-pencil" aria-label="Edit username"></i>
-    <p>email</p>
     <div class="posthistory sidebar">
         <p>No more iPhones?</p>
         <p>First Post! :)</p>

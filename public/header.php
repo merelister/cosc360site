@@ -1,10 +1,10 @@
 <?php $header = '<header id="header">
-            <a href="360_site.php" style="position: relative; z-index : 10;"><img src="images/rabbit.png" id="logo"></a>
+            <a href="home.php" style="position: relative; z-index : 10;"><img src="images/rabbit.png" id="logo"></a>
 
             <div class="dropdown">
                 <a onclick="dropdown()"><img src="https://thispersondoesnotexist.com/image" class="usericon"></a>
                 <div id="myDropdown" class="dropdown-content">
-                    <a href="profile_page.html">Profile</a>
+                    <a href="profile.php">Profile</a>
                     <a href="#">➕ New Post</a>
                     <a onclick="toggleNightMode()" id="nightMode">Night Mode</a>
                 </div>
