@@ -22,7 +22,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET") {
         
         // create the first comment of the thread
         // TODO: get real userId (instead of "1")
-        $sql = "INSERT INTO comments (threadId, userId, content) VALUES ('" . $threadId . "','1'," . $content . "')"; 
+        $sql = "INSERT INTO comments (threadId, userId, content) VALUES ('" . $threadId . "','1','" . $content . "')"; 
         mysqli_query($connection, $sql);
         mysqli_close($connection);
 
