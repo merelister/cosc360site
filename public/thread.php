@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://fonts.xz.style/serve/inter.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/360_site_airplanes.css">
+    <link rel="stylesheet" href="css/360_site.css">
 </head>
 <body>
 <?php
@@ -19,15 +19,18 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["thread"])) {
     $connection = connect();
     $sql = "SELECT * FROM comments WHERE threadId='" . $threadId . "'";
     // todo: get thread title and category
-    echo "<h1>Thread title (todo)</h1>";
+    echo "<div class=\"layout\">
+    <div class=\"postblock\">
+    <h1>Thread title (todo)</h1>";
     $results = mysqli_query($connection, $sql);
     while ($row = mysqli_fetch_assoc($results)) {
-        echo "<p>";
+        echo "<div class=\"post\">";
         // todo: can also include timestamps, userId, rating
         echo $row["content"];
-        echo "</p><br>";
+        echo "</div>";
 
     }
+    echo "</div></div>";
     mysqli_free_result($results);
     include "createComment.php";
     echo $comment;
