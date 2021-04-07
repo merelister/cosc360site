@@ -29,7 +29,9 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET["thread"])) {
 
     }
     mysqli_free_result($results);
-    echo "button to comment";
+    include "createComment.php";
+    echo $comment;
+    // todo: if logged in: show comment box. else, show message "you must be logged in to comment"
     mysqli_close($connection);
 } else header("Location: error_page.php" ); // redirect to error page if the thread doesn't exist
 ?>
