@@ -51,6 +51,7 @@ function toggleNightMode() {
 
     var button = document.getElementById("nightMode");
     var logo = document.getElementById("logo");
+    var dropdown = document.getElementById("drop");
 
     if (nightMode == false) {
 
@@ -72,6 +73,7 @@ function toggleNightMode() {
 
         button.innerHTML = "Day Mode‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎";
         logo.src = "images/lightRabbit.png";
+        dropdown.src = "images/downarrowwhite.png";
         nightMode = true;
         document.cookie = "nightmode=true;";
     }   
@@ -96,6 +98,7 @@ function toggleNightMode() {
 
         button.innerHTML = "Night Mode";
         logo.src = "images/rabbit.png";
+        dropdown.src = "images/downarrow.png";
         nightMode = false;
         document.cookie = "nightmode=false;";
     }

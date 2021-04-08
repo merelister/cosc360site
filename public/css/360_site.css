@@ -179,6 +179,12 @@ form.example input[type=text] {
     z-index : 10;
   }
 
+  .dropicon{
+    position: absolute;
+    border-radius: 0.5em;
+    z-index : 10;
+  }
+
   .dropdown-content {
     display: none;
     position: absolute;
