@@ -25,6 +25,10 @@
     <h1>@username</h1>
     <i class="fa fa-pencil" aria-label="Edit username"></i>
     <p>email</p>
+    <?php
+        echo("<p>" . $userId . "</p>");
+    ?>
+    
     <div class="posthistory sidebar">
         <p>No more iPhones?</p>
         <p>First Post! :)</p>

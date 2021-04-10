@@ -47,6 +47,14 @@ else
             echo("<p>You are logged in!</p>");
             echo("<p>redirecting...</p>");
             header( "refresh:5;url=../home.php" );
+
+            //grab userId
+            $row = mysqli_fetch_assoc($results);
+            $_SESSION['userId'] = $row['userId'];
+            echo( $row['userId'] );
+
+            //set auth var
+            $_SESSION['authenticated'] = true;
         }
         
         //close connection
