@@ -2,10 +2,12 @@
 
 $auth = false;
 $userid = 0;
+$username = "";
 
 session_start();
 if (isset($_SESSION['authenticated'])) $auth = $_SESSION['authenticated'];
 if (isset($_SESSION['userid'])) $userid = $_SESSION['userid'];
+if (isset($_SESSION['username'])) $username = $_SESSION['username'];
 
 if ($auth == true) {
     $header = '<header id="header">
@@ -14,8 +16,9 @@ if ($auth == true) {
             <div class="dropdown">
                 <a onclick="dropdown()"><img src="https://thispersondoesnotexist.com/image" class="usericon"></a>
                 <div id="myDropdown" class="dropdown-content">
-                    <a href="profile.php/?id=' . $userid . '>Profile</a>
+                    <a href="profile.php/?id=' . $userid . '">Profile</a>
                     <a href="#">➕ New Post</a>
+                    <a href="signout.php">Sign Out</a>
                     <a onclick="toggleNightMode()" id="nightMode">Night Mode</a>
                 </div>
             </div>
