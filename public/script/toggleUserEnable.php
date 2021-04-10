@@ -13,7 +13,7 @@ if(isset($_GET['id']) && isset($_GET['toggle'])) {
         $sql = 'UPDATE user SET role="-1" WHERE userId="'.$id.'"';
         mysqli_query($connection, $sql);
         if(mysqli_affected_rows($connection)) {
-            echo "User account disabled";  
+            echo "User account disabled<br>";  
         } else echo "Error: please try again.<br>"; 
     }
 
@@ -22,7 +22,7 @@ if(isset($_GET['id']) && isset($_GET['toggle'])) {
         $sql = 'UPDATE user SET role="0" WHERE userId="'.$id.'"';
         mysqli_query($connection, $sql);
         if(mysqli_affected_rows($connection)) {
-            echo "User account enabled"; 
+            echo "User account enabled<br>"; 
         } else echo "Error: please try again.<br>";
         
     }

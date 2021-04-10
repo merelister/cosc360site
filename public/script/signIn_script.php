@@ -2,7 +2,7 @@
 <html>
 <?php
 
-include "script/connect.php";
+include "connect.php";
 $connection = connect();
     //good connection do your thing
     if( isset($_POST['username']) && isset($_POST['password']))
@@ -26,6 +26,10 @@ $connection = connect();
         else
         {
             $row = mysqli_fetch_assoc($results);
+            if($row['role'] == -1) {
+                echo 'This account has been disabled by the administrator.<br>';
+                echo '<a href="../home.php">Return to site home.</a>';
+            } else {
             session_start();
             $_SESSION['authenticated'] = true;
             $_SESSION['userid'] = $row['userId'];
@@ -34,6 +38,7 @@ $connection = connect();
             $_SESSION['role'] = $row['role'];
             
             header( "Location: ../home.php" );
+        }
         }
         
         //close connection
