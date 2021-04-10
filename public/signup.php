@@ -9,14 +9,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/360_site.css">
     <link rel="stylesheet" href="css/360_signup.css">
-    <script type="text/javascript" src="script/signup.js"></script>
     <script type="text/javascript" src="script/mainpage.js"></script>
+    <script type="text/javascript" src="script/signup.js"></script>
 </head>
 
 <body>
       <?php include "header.php"; echo $header; ?>
 
-        <form method="post" action="script/signup_script.php">
+        <form method="post" action="script/signup_script.php" enctype="multipart/form-data">
             <div class="signupcontainer">
               <h1>Register</h1>
               <p>Fill in this form to get started.</p>
@@ -33,6 +33,12 @@
           
               <label for="pass-repeat"><b>Repeat Password</b></label>
               <input type="password" placeholder="Repeat Password" name="pass-repeat" id="confirm_password" class="regentry" required>
+
+              <div class="avatar">
+              <label>Select your avatar: </label>
+              <input type="file" name="avatar" id="avatarinput" accept="image/*"/>
+              </div>
+
               <hr>
           
               <p>By creating an account you agree to our <a href="#" onclick="openForm()">Terms & Privacy</a>.</p>
