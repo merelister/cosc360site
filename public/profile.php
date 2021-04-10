@@ -18,8 +18,53 @@
     echo $header; ?>
 
 
-    <?php echo "<h1>". $_GET['id'] . "</h1>";
-            echo "<br><h1>". $userid. "</h1>"; ?>
+    <?php
+    echo "<h1> getid" . $_GET['id'] . "</h1>";
+    echo "<br><h1> uid" . $userid . "</h1>";
+
+    $thisId = $_GET['id'];
+
+    $host = "localhost";
+    $database = "360site";
+    $user = "webuser";
+    $password = "P@ssw0rd";
+
+    $connection = mysqli_connect($host, $user, $password, $database);
+
+
+    $error = mysqli_connect_error();
+    if ($error != null) {
+        $output = "<p>Unable to connect to database!</p>";
+        exit($output);
+    } else {
+        //signed in do your thing
+        if (isset($_SESSION['userid'])) {
+            //$username;
+
+            //query the login info
+            $sql = "SELECT * FROM user WHERE userId ='$thisId';";
+            $results = mysqli_query($connection, $sql);
+            $count = mysqli_num_rows($results);
+
+            if ($count == 0) {
+                echo ("invalid results");
+                echo ("<p><a href=\"http://localhost/cosc360site/public/signin.php\">Return to login</a></p>");
+            } else {
+                $row = mysqli_fetch_assoc($results);
+                //$_SESSION['userid'] = $row['userId'];
+                $email = $row['email'];
+                $username = $row['displayName'];
+
+            }
+
+            //close connection
+            mysqli_free_result($results);
+            mysqli_close($connection);
+        }
+    }
+
+
+    ?>
 
     <img src="https://thispersondoesnotexist.com/image" width="150" height="150" class="user-icon">
     <i class="fa fa-pencil" aria-label="Edit profile picture"></i>
