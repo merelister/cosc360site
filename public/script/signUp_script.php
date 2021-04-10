@@ -40,7 +40,7 @@ else
             $_SESSION['authenticated'] = true;
             $_SESSION['userid'] = mysqli_insert_id($connection);
             $_SESSION['username'] = $username;
-
+            $_SESSION['role'] = 0; // default user role
             echo("<p>Welcome $username, your account has been created!</p>");
             echo("<p>redirecting...</p>");
             header( "refresh:5;url=../home.php" );

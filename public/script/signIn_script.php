@@ -49,12 +49,14 @@ else
             header( "refresh:5;url=../home.php" );
 
             //grab userId
-            $row = mysqli_fetch_assoc($results);
+           // $row = mysqli_fetch_assoc($results);
             $_SESSION['userId'] = $row['userId'];
             echo( $row['userId'] );
 
             //set auth var
             $_SESSION['authenticated'] = true;
+            // user: role=0     admin: role=1
+            $_SESSION['role'] = $row['role'];
         }
         
         //close connection
