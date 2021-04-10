@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/360_site.css">
     <link rel="stylesheet" href="css/360_signup.css">
     <script type="text/javascript" src="script/signup.js"></script>
-    <script type="text/javascript" src="script/mainpage.js"></script>
+    <script type="text/javascript" src="script/mainpage2.js"></script>
 </head>
 
 <body>

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/360_site.css">
-    <script type="text/javascript" src="script/mainpage.js"></script>
+    <script type="text/javascript" src="script/mainpage2.js"></script>
 </head>
 
 <body>
@@ -56,15 +56,14 @@
 
     </div>
 
-
-    <?php if ($auth == true) echo "<div class='sidebar'>
+    <?php 
+        if ($auth == true) echo "<div class='sidebar'>
         <div class='posthistory'>
-            <a href='profile.php/?id='" . $userid . "''><h4>@". $username ."</h4></a>
+            <a href=\"profile.php/?id=\"" . $userid . "\"\"><h4>@". $username ."</h4></a>
             <p>Welcome back!</p>
         </div>"; 
-        ?>
-    
-    <?php if ($auth == false) echo "<div class='sidebar'>
+        
+        if ($auth == false) echo "<div class='sidebar'>
         <div class='posthistory'>
             <h3> Welcome to Rabbit! </h3>
             <p> Please sign in or create a free account today in order to access the full array of Rabbit features! </p>

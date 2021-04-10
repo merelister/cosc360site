@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1.1.2/new.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/360_site.css">
-    <script type="text/javascript" src="script/mainpage.js"></script>
+    <script type="text/javascript" src="script/mainpage2.js"></script>
 </head>
 
 <body>

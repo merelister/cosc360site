@@ -34,7 +34,7 @@ else
         if($count==0)
         {
             echo("Username and/or password are invalid");
-            echo("<p><a href=\"http://localhost/cosc360site/public/signin.php\">Return to login</a></p>");
+            echo("<p><a href=\"../signin.php\">Return to login</a></p>");
         }
         else
         {
@@ -43,20 +43,10 @@ else
             $_SESSION['authenticated'] = true;
             $_SESSION['userid'] = $row['userId'];
             $_SESSION['username'] = $row['displayName'];
-
-            echo("<p>You are logged in!</p>");
-            echo("<p>redirecting...</p>");
-            header( "refresh:5;url=../home.php" );
-
-            //grab userId
-           // $row = mysqli_fetch_assoc($results);
-            $_SESSION['userId'] = $row['userId'];
-            echo( $row['userId'] );
-
-            //set auth var
-            $_SESSION['authenticated'] = true;
             // user: role=0     admin: role=1
             $_SESSION['role'] = $row['role'];
+            
+            header( "Location: ../home.php" );
         }
         
         //close connection
