@@ -19,8 +19,6 @@
 
 
     <?php
-    echo "<h1> getid" . $_GET['id'] . "</h1>";
-    echo "<br><h1> uid" . $userid . "</h1>";
 
     $thisId = $_GET['id'];
 
@@ -40,6 +38,7 @@
         //signed in do your thing
         if (isset($_SESSION['userid'])) {
             //$username;
+            $postHistory = "";
 
             //query the login info
             $sql = "SELECT * FROM user WHERE userId ='$thisId';";
@@ -57,25 +56,49 @@
 
             }
 
+            //now query the post history
+            $sql = "SELECT * FROM comments WHERE userId ='$thisId';";
+            $results = mysqli_query($connection, $sql);
+            $count = mysqli_num_rows($results);
+
+            if ($count == 0) {
+                $postHistory = "<p>User has no post history!</p>";
+            } else {
+                $row = mysqli_fetch_assoc($results);
+
+                while ($row = mysqli_fetch_assoc($result)){
+                    echo($row['content']);
+                    $postHistory += $row['content'];
+                }
+
+            }
+
             //close connection
             mysqli_free_result($results);
             mysqli_close($connection);
         }
     }
 
-
-    ?>
-
+    $body = '
     <img src="https://thispersondoesnotexist.com/image" width="150" height="150" class="user-icon">
     <i class="fa fa-pencil" aria-label="Edit profile picture"></i>
-    <h1>@username</h1>
+    <h1>' . $username . '</h1>
     <i class="fa fa-pencil" aria-label="Edit username"></i>
-    <p>email</p>
+    <p>' . $email . '</p>
     <div class="posthistory sidebar">
         <p>No more iPhones?</p>
         <p>First Post! :)</p>
         <p>First Post! :)</p>
+        ' . $postHistory . '
     </div>
+    ';
+
+
+
+    echo($body);
+    ?>
+
+
 </body>
 
 </html>
