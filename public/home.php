@@ -16,50 +16,44 @@
    <?php include "header.php"; echo $header; ?>
 
     <div class="layout">
-        <div class="postblock">
-            <a href="thread.php?thread=5">
-                <div class="post">
-                    <h3>Airplanes?</h3>
-                    <p>Lorem ipsum</p>
-            </a>
-        </div>
+    <div class="postblock">
 
-        <div class="post">
-            <h3>No More iPhones :(</h3>
-            <p>Lorem ipsum et calmor</p>
-        </div>
+    <?php
+    $host = "localhost";
+    $database = "360site";
+    $user = "webuser";
+    $password = "P@ssw0rd";
 
-        <div class="post">
-            <h3>Check out this sunrise!!</h3>
-            <p>Lorem ipsum et calmor</p>
-        </div>
+    $connection = mysqli_connect($host, $user, $password, $database);
 
-        <div class="post">
-            <h3>Check out this sunrise!!</h3>
-            <p>Lorem ipsum et calmor</p>
-        </div>
+    $sql = "SELECT * FROM threads";
+    $results = mysqli_query($connection, $sql);
+    
 
-        <div class="post">
-            <h3>Check out this sunrise!!</h3>
-            <p>Lorem ipsum et calmor</p>
-        </div>
+    while($row = mysqli_fetch_assoc($results)) {
 
-        <div class="post">
-            <h3>Check out this sunrise!!</h3>
-            <p>Lorem ipsum et calmor</p>
-        </div>
+    $sql2 = "SELECT content FROM comments WHERE threadId = " . $row['threadId'] . "";
+    $results2 = mysqli_query($connection, $sql2);
+    $row2 = mysqli_fetch_assoc($results2);
 
-        <div class="post">
-            <h3>Check out this sunrise!!</h3>
-            <p>Lorem ipsum et calmor</p>
-        </div>
+        echo "<a href=\"thread.php?thread=" . $row['threadId'] . "\">
+                <div class=\"post\">
+                    <h3>" . $row['title'] . "</h3>
+                    <p>". $row2['content'] ."</p>
+                </a>
+            </div>";
+    }
 
-    </div>
+    mysqli_close($connection);
+    ?>
+
+     </div>
+        
 
     <?php 
         if ($auth == true) echo "<div class='sidebar'>
         <div class='posthistory'>
-            <a href=\"profile.php/?id=\"" . $userid . "\"\"><h4>@". $username ."</h4></a>
+            <a href=\"profile.php/?id=" . $userid . "\"\"><h4>@". $username ."</h4></a>
             <p>Welcome back!</p>
         </div>"; 
         
@@ -73,18 +67,29 @@
         ?>
 
         <div class="categorybar">
+
+
             <div class="categories" id="sports">
                 Sports
             </div>
+
+
             <div class="categories" id="news">
                 News
             </div>
+
+
             <div class="categories" id="art">
                 Art
             </div>
+
+
             <div class="categories" id="nature">
                 Nature
             </div>
+
+
+
         </div>
     </div>
     </div>

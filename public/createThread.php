@@ -20,18 +20,26 @@ todo: category is drop down -->
 
 <body>
     <?php include "header.php";
-    echo $header; ?>
+    echo $header; 
 
+    if ($auth) echo "<form method=\"GET\" action=\"script/submitThread.php\">
+    <input type=\"text\" placeholder=\"Thread title\" name=\"title\" required> <br>
+    <textarea name=\"content\" placeholder=\"Post body\" cols=\"25\" rows=\"10\" required> </textarea>
+    <br>
+    <select id=\"category\" name=\"category\">
+        <option value=\"General\">General</option>
+        <option value=\"Sports\">Sports</option>
+        <option value=\"News\">News</option>
+        <option value=\"Art\">Art</option>
+        <option value=\"Nature\">Nature</option>
+    </select>
+    <br>
+    <button type=\"submit\">Create new thread</button>
+    </form>";
 
-    <form method="GET" action="script/submitThread.php">
-        <input type="text" placeholder="Thread title" name="title" required> <br>
-        <textarea name="content" placeholder="Post body" cols="25" rows="10" required> </textarea>
-        <br>
-
-        <input type="text" placeholder="Category" name="category" required>
-        <br>
-        <button type="submit">Create new thread</button>
-    </form>
+    else echo "<h2 style=\"float:left\">Cannot create a thread if not logged in.</h2><br><br><br><br><a href='signin.php'>Log in</a>";
+    
+    ?>
 </body>
 
 </html>

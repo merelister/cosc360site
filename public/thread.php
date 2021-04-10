@@ -32,10 +32,10 @@
         $results = mysqli_query($connection, $sql);
         if($row = mysqli_fetch_assoc($results)) {
             echo "<h1>" . $row["title"] . "</h1>";
-            echo "<h2>" . $row["category"] . "</h2>";
+            echo "<p>" . $row["category"] . "</p>";
         } else {
             echo "<h1>Error: Thread title not found</h1>";
-            echo "<h2>Error: Thread category not found</h2>";
+            echo "<p>Error: Thread category not found</p>";
         }
         mysqli_free_result($results);
 
@@ -58,7 +58,7 @@
             include "createComment.php";
             echo $comment;
         } else {
-            echo "You must be logged in to comment. <a href='signin.php'>Log in here</a>, or <a href='signup.php'>sign up</a> for an account.";
+            echo "You must be logged in to comment. <a href='signin.php'>Log in here</a>, or <a href='signup.php'>Sign up</a> for an account.";
         }
         
         mysqli_close($connection);
