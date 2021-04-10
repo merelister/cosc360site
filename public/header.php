@@ -17,9 +17,10 @@ if ($auth == true) {
                 <a onclick="dropdown()"><img src="https://thispersondoesnotexist.com/image" class="usericon"></a>
                 <div id="myDropdown" class="dropdown-content">
                     <a href="profile.php/?id=' . $userid . '">Profile</a>
-                    <a href="#">➕ New Post</a>
+                    <a href="createThread.php">➕ New Thread</a>
                     <a href="signout.php">Sign Out</a>
                     <a onclick="toggleNightMode()" id="nightMode">Night Mode</a>
+                    <img id="drop" style="display:none">
                 </div>
             </div>
 
@@ -41,7 +42,7 @@ if ($auth != true) {
             <a href="signup.php">Sign Up</a>
             <a onclick="toggleNightMode()" id="nightMode">Night Mode</a>
         </div>
-        </div>
+    </div>
 
         <form class="example" action="search.php" method="GET">
             <input type="text" placeholder="Search.." name="search" class="searchbar">

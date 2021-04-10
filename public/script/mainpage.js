@@ -54,6 +54,7 @@ function toggleNightMode() {
     var dropdown = document.getElementById("drop");
 
     if (nightMode == false) {
+      console.log("Nightmode False detected");
 
         elements = document.getElementsByTagName("h3");
         for (var i = 0; i < elements.length; i++) {
@@ -76,9 +77,12 @@ function toggleNightMode() {
         dropdown.src = "images/downarrowwhite.png";
         nightMode = true;
         document.cookie = "nightmode=true;";
-    }   
+  
+        console.log("Nightmode Toggled");
+    }  
 
     else {
+      console.log("Nightmode True");
 
         elements = document.getElementsByTagName("h3");
         for (var i = 0; i < elements.length; i++) {
@@ -101,7 +105,8 @@ function toggleNightMode() {
         dropdown.src = "images/downarrow.png";
         nightMode = false;
         document.cookie = "nightmode=false;";
+        console.log("Daymode Toggled");
     }
 
 
-}
+  }
