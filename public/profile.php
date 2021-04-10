@@ -24,12 +24,16 @@
 
     include "script/connect.php";
     $connection = connect();
+
+  
+ 
+    if(isset($_SESSION["role"])) $role = $_SESSION["role"];
         //signed in do your thing
         if (isset($_SESSION['userid'])) {
             $postHistory = "";
 
             //query the login info
-            $sql = "SELECT * FROM user WHERE userId ='$thisId';";
+            $sql = "SELECT * FROM user WHERE userId ='$thisId'";
             $results = mysqli_query($connection, $sql);
             $count = mysqli_num_rows($results);
 
@@ -40,8 +44,22 @@
                 $row = mysqli_fetch_assoc($results);
                 $email = $row['email'];
                 $username = $row['displayName'];
+                $profilerole = $row['role'];
 
-            }
+                // admin can disable/enable users
+                 if($role == 1 && $profilerole != -1) {
+                 echo '<form action="script/toggleUserEnable.php" method="GET">
+                 <input type="hidden" name="id" value="'.$thisId.'">
+                 <input type="hidden" name="toggle" value="disable">
+                 <button type="submit">Disable user</button> </form>';
+             } else if($role == 1 && $profilerole == -1) {
+                echo '<form action="script/toggleUserEnable.php" method="GET">
+                <input type="hidden" name="id" value="'.$thisId.'">
+                <input type="hidden" name="toggle" value="enable">
+                <button type="submit">Enable user</button> </form>';
+             }
+        }
+            
 
             //now query the post history
             $sql = "SELECT * FROM comments WHERE userId ='$thisId';";
