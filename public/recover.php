@@ -15,24 +15,16 @@
 <body>
     <?php include "header.php"; echo $header; ?>
 
-        <form method="post" action="script/signin_script.php">
+        <form method="post" action="script/recover_script.php">
             <div class="signupcontainer">
-              <h1>Sign in</h1>
-              <p>Welcome back!</p>
-              <hr>
-          
-              <label for="username"><b>Username</b></label>
-              <input type="text" placeholder="Enter Username" name="username" id="username" class="regentry" required>
-          
-              <label for="pass"><b>Password</b></label>
-              <input type="password" placeholder="Enter Password" name="password" id="password" class="regentry" required>
+              <h1>Recover Password</h1>
+                <br>
+              <label for="username"><b>Email Address</b></label>
+              <input type="text" placeholder="Enter the Email associated with your account" name="email" id="email" class="regentry" required>
 
             </div>
-            <button type="submit" class="registerbtn" onclick="">Sign In</button>
+            <button type="submit" class="registerbtn" onclick="">Recover</button>
             <div class="signupcontainer">
-            <br>
-              <p>Dont have an account yet? <a href="signup.php">Sign up</a>.</p>
-              <p>Forgot your password? <a href="recover.php">Recover Password</a>.</p>
             </div>
           </form>
 

@@ -41,15 +41,13 @@ else
             $_SESSION['userid'] = mysqli_insert_id($connection);
             $_SESSION['username'] = $username;
 
-            echo("<p>Welcome $username, your account has been created!</p>");
-            echo("<p>redirecting...</p>");
-            header( "refresh:5;url=../home.php" );
+            header( "Location: url='../home.php'");
         }
         else
         {
             //there is an existing account so let the user know
             echo("user already exists with this name and or email");
-            echo("<p><a href=\"http://localhost/cosc360site/public/signup.php\">return to user entry</a></p>");
+            echo("<p><a href=\"../signup.php\">Return to user entry</a></p>");
         }
         
         //close connection
