@@ -17,6 +17,10 @@
     <?php include "header.php";
     echo $header; ?>
 
+
+    <?php echo "<h1>". $_GET['id'] . "</h1>";
+            echo "<br><h1>". $userid. "</h1>"; ?>
+
     <img src="https://thispersondoesnotexist.com/image" width="150" height="150" class="user-icon">
     <i class="fa fa-pencil" aria-label="Edit profile picture"></i>
     <h1>@username</h1>

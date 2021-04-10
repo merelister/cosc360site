@@ -27,7 +27,7 @@ else
         $pass = md5($password);
         
         //query the login info
-        $sql = "SELECT * FROM user WHERE displayName ='$username' AND password = '$password';";
+        $sql = "SELECT * FROM user WHERE displayName ='$username' AND password = '$pass';";
         //$sql = "SELECT displayName, password FROM user;";
         $results = mysqli_query($connection, $sql);
         $count = mysqli_num_rows($results);
@@ -39,6 +39,11 @@ else
         }
         else
         {
+            $row = mysqli_fetch_assoc($results);
+            session_start();
+            $_SESSION['authenticated'] = true;
+            $_SESSION['userid'] = $row['userId'];
+
             echo("<p>You are logged in!</p>");
             echo("<p>redirecting...</p>");
             header( "refresh:5;url=../home.php" );

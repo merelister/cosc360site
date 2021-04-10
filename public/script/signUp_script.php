@@ -33,8 +33,13 @@ else
         if($count==0)
         {
             //query the user info
-            $query = "INSERT INTO user (displayName,email,password) VALUES ('$username','$email','$password');";
+            $query = "INSERT INTO user (displayName,email,password) VALUES ('$username','$email','$pass');";
             $result = mysqli_query($connection, $query);
+
+            session_start();
+            $_SESSION['authenticated'] = true;
+            $_SESSION['userid'] = mysqli_insert_id($connection);
+
             echo("<p>Welcome $username, your account has been created!</p>");
             echo("<p>redirecting...</p>");
             header( "refresh:5;url=../home.php" );
