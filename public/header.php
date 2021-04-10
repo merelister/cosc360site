@@ -11,14 +11,16 @@ if (isset($_SESSION['userid'])) $userid = $_SESSION['userid'];
 if (isset($_SESSION['username'])) $username = $_SESSION['username'];
 // todo: set session variable for role in signIn_script
 if (isset($_SESSION['role'])) $role = $_SESSION['role'];
+if (isset($_SESSION['ppic'])) $ppic = $_SESSION['ppic'];
 
+//$image = '<img src="data:image/jpeg;base64,'.$c.'" />'
 
 if ($auth == true && $role == 0) {
     $header = '<header id="header">
             <a href="home.php" style="position: relative; z-index : 10;"><img src="images/rabbit.png" id="logo"></a>
 
             <div class="dropdown">
-                <a onclick="dropdown()"><img src="https://thispersondoesnotexist.com/image" class="usericon"></a>
+                <a onclick="dropdown()"><img class="usericon" width="50" height="50" src="script/images/' . $userid . '.jpg"></a>
                 <div id="myDropdown" class="dropdown-content">
                     <a href="profile.php/?id=' . $userid . '">Profile</a>
                     <a href="createThread.php">➕ New Thread</a>
@@ -38,7 +40,7 @@ if ($auth == true && $role == 0) {
     $header = '<header id="header">
             <a href="home.php" style="position: relative; z-index : 10;"><img src="images/rabbit.png" id="logo"></a>
             <div class="dropdown">
-                <a onclick="dropdown()"><img src="https://thispersondoesnotexist.com/image" class="usericon"></a>
+                <a onclick="dropdown()"><img class="usericon" width="50" height="50" src="script/images/' . $userid . '.jpg"></a>
                 <div id="myDropdown" class="dropdown-content">
                     <a href="profile.php?id=' . $userid . '">Profile</a>
                     <a href="createThread.php">➕ New Post</a>
@@ -64,7 +66,7 @@ if ($auth != true) {
     <a href="home.php" style="position: relative; z-index : 10;"><img src="images/rabbit.png" id="logo"></a>
 
     <div class="dropdown">
-        <a onclick="dropdown()"><img src="images/downarrow.png" class="usericon" id="drop"></a>
+        <a onclick="dropdown()"><img width="50" height="50" src="images/downarrow.png" class="usericon" id="drop"></a>
         <div id="myDropdown" class="dropdown-content">
             <a href="signin.php">Sign In</a>
             <a href="signup.php">Sign Up</a>

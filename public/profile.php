@@ -22,6 +22,8 @@
 
     $thisId = $_GET['id'];
 
+    $email = "";
+
     $host = "localhost";
     $database = "360site";
     $user = "webuser";
@@ -45,7 +47,8 @@
 
             if ($count == 0) {
                 echo ("invalid results");
-                echo ("<p><a href=\"http://localhost/cosc360site/public/signin.php\">Return to login</a></p>");
+                echo ("<br>");
+                echo ("<br>");
             } else {
                 $row = mysqli_fetch_assoc($results);
                 $email = $row['email'];
@@ -76,7 +79,7 @@
     }
 
     $body = '
-    <img src="https://thispersondoesnotexist.com/image" width="150" height="150" class="user-icon">
+    <img src="script/images/' . $thisId . '.jpg" width="150" height="150" class="usericon">
     <i class="fa fa-pencil" aria-label="Edit profile picture"></i>
     <h1>' . $username . '</h1>
     <i class="fa fa-pencil" aria-label="Edit username"></i>
