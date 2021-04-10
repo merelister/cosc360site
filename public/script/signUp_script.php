@@ -35,13 +35,15 @@ else
             //query the user info
             $query = "INSERT INTO user (displayName,email,password) VALUES ('$username','$email','$password');";
             $result = mysqli_query($connection, $query);
-            echo("account for user $username has been created.");
+            echo("<p>Welcome $username, your account has been created!</p>");
+            echo("<p>redirecting...</p>");
+            header( "refresh:5;url=../home.php" );
         }
         else
         {
             //there is an existing account so let the user know
             echo("user already exists with this name and or email");
-            echo("<p><a href=\"http://localhost/lab-9/lab9-1.html\">return to user entry</a></p>");
+            echo("<p><a href=\"http://localhost/cosc360site/public/signup.php\">return to user entry</a></p>");
         }
         
         //close connection

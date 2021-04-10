@@ -15,7 +15,7 @@
 <body>
     <?php include "header.php"; echo $header; ?>
 
-        <form method="post" action="script/sighnin_script.php">
+        <form method="post" action="script/signin_script.php">
             <div class="signupcontainer">
               <h1>Sign in</h1>
               <p>Welcome back!</p>

@@ -39,7 +39,9 @@ else
         }
         else
         {
-            echo("You are logged in!");
+            echo("<p>You are logged in!</p>");
+            echo("<p>redirecting...</p>");
+            header( "refresh:5;url=../home.php" );
         }
         
         //close connection

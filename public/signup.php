@@ -26,10 +26,10 @@
               <input type="email" placeholder="Enter Email" name="email" class="regentry" required>
 
               <label for="username"><b>Username</b></label>
-              <input type="text" placeholder="Enter Username" name="user" class="regentry" required>
+              <input type="text" placeholder="Enter Username" name="username" class="regentry" required>
           
               <label for="pass"><b>Password</b></label>
-              <input type="password" placeholder="Enter Password" name="pass" id="password" class="regentry" minlength="8" required>
+              <input type="password" placeholder="Enter Password" name="password" id="password" class="regentry" minlength="8" required>
           
               <label for="pass-repeat"><b>Repeat Password</b></label>
               <input type="password" placeholder="Repeat Password" name="pass-repeat" id="confirm_password" class="regentry" required>
