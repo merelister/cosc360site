@@ -15,17 +15,17 @@
 <body>
     <?php include "header.php"; echo $header; ?>
 
-        <form action="register.php">
+        <form method="post" action="script/signin_script.php">
             <div class="signupcontainer">
               <h1>Sign in</h1>
               <p>Welcome back!</p>
               <hr>
           
               <label for="username"><b>Username</b></label>
-              <input type="text" placeholder="Enter Username" name="user" class="regentry" required>
+              <input type="text" placeholder="Enter Username" name="username" id="username" class="regentry" required>
           
               <label for="pass"><b>Password</b></label>
-              <input type="password" placeholder="Enter Password" name="pass" class="regentry" required>
+              <input type="password" placeholder="Enter Password" name="password" id="password" class="regentry" required>
 
             </div>
             <button type="submit" class="registerbtn" onclick="">Sign In</button>
