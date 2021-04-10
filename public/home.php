@@ -56,7 +56,7 @@
 
     </div>
 
-<<<<<<< Updated upstream
+
     <?php if ($auth == true) echo "<div class='sidebar'>
         <div class='posthistory'>
             <a href='profile.php/?id='" . $userid . "''><h4>@". $username ."</h4></a>
@@ -72,16 +72,6 @@
             <a href='signin.php'>Sign In</a>
         </div>"; 
         ?>
-=======
-
-    <div class="sidebar">
-        <div class="posthistory">
-            <a href="profile.php"><h3>@avguser #Jane Doe</h3></a>
-            <p>No more iPhones?</p>
-            <p>First Post! :)</p>
-            <p>First Post! :)</p>
-        </div>
->>>>>>> Stashed changes
 
         <div class="categorybar">
             <div class="categories" id="sports">
