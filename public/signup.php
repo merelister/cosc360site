@@ -16,7 +16,7 @@
 <body>
       <?php include "header.php"; echo $header; ?>
 
-        <form action="register.php">
+        <form method="post" action="script/signup_script.php">
             <div class="signupcontainer">
               <h1>Register</h1>
               <p>Fill in this form to get started.</p>
