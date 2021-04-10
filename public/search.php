@@ -43,7 +43,7 @@
                 $sql = "SELECT * FROM user WHERE displayName LIKE '%" . $searchTerm . "%'";
                 break;
             case 'emails':
-                "SELECT * FROM user WHERE email LIKE '%" . $searchTerm . "%'";
+                $sql = "SELECT * FROM user WHERE email LIKE '%" . $searchTerm . "%'";
                 break;
             default:
                 echo "Error: invalid search";
