@@ -22,18 +22,8 @@
 
     $thisId = $_GET['id'];
 
-    $host = "localhost";
-    $database = "360site";
-    $user = "webuser";
-    $password = "P@ssw0rd";
-
-    $connection = mysqli_connect($host, $user, $password, $database);
-
-    $error = mysqli_connect_error();
-    if ($error != null) {
-        $output = "<p>Unable to connect to database!</p>";
-        exit($output);
-    } else {
+    include "script/connect.php";
+    $connection = connect();
         //signed in do your thing
         if (isset($_SESSION['userid'])) {
             $postHistory = "";
@@ -73,7 +63,7 @@
             mysqli_free_result($results);
             mysqli_close($connection);
         }
-    }
+    
 
     $body = '
     <img src="https://thispersondoesnotexist.com/image" width="150" height="150" class="user-icon">
