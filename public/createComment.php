@@ -1,5 +1,5 @@
 <?php
-$comment = "<form method=\"GET\" action=\"submitComment.php\">
+$comment = "<form method=\"GET\" action=\"script/submitComment.php\">
 <label for=\"content\">Comment</label>
 <br>
 <textarea name=\"comment\" required></textarea>
