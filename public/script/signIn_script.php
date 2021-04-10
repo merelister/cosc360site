@@ -9,7 +9,6 @@ $password = "P@ssw0rd";
 
 $connection = mysqli_connect($host, $user, $password, $database);
 
-
 $error = mysqli_connect_error();
 if($error != null)
 {
@@ -43,6 +42,7 @@ else
             session_start();
             $_SESSION['authenticated'] = true;
             $_SESSION['userid'] = $row['userId'];
+            $_SESSION['username'] = $row['displayName'];
 
             echo("<p>You are logged in!</p>");
             echo("<p>redirecting...</p>");

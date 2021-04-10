@@ -17,7 +17,6 @@
     <?php include "header.php";
     echo $header; ?>
 
-
     <?php echo "<h1>". $_GET['id'] . "</h1>";
             echo "<br><h1>". $userid. "</h1>"; ?>
 

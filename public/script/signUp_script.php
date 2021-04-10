@@ -39,6 +39,7 @@ else
             session_start();
             $_SESSION['authenticated'] = true;
             $_SESSION['userid'] = mysqli_insert_id($connection);
+            $_SESSION['username'] = $username;
 
             echo("<p>Welcome $username, your account has been created!</p>");
             echo("<p>redirecting...</p>");

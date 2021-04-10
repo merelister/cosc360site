@@ -2,10 +2,12 @@
 
 $auth = false;
 $userid = 0;
+$username = "";
 
 session_start();
 if (isset($_SESSION['authenticated'])) $auth = $_SESSION['authenticated'];
 if (isset($_SESSION['userid'])) $userid = $_SESSION['userid'];
+if (isset($_SESSION['username'])) $username = $_SESSION['username'];
 
 if ($auth == true) {
     $header = '<header id="header">

@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -56,14 +56,21 @@
 
     </div>
 
-
-    <div class="sidebar">
-        <div class="posthistory">
-            <a href="profile.html"><h3>@avguser #Jane Doe</h3></a>
-            <p>No more iPhones?</p>
-            <p>First Post! :)</p>
-            <p>First Post! :)</p>
-        </div>
+    <?php if ($auth == true) echo "<div class='sidebar'>
+        <div class='posthistory'>
+            <a href='profile.php/?id='" . $userid . "''><h4>@". $username ."</h4></a>
+            <p>Welcome back!</p>
+        </div>"; 
+        ?>
+    
+    <?php if ($auth == false) echo "<div class='sidebar'>
+        <div class='posthistory'>
+            <h3> Welcome to Rabbit! </h3>
+            <p> Please sign in or create a free account today in order to access the full array of Rabbit features! </p>
+            <a href='signup.php'>Sign Up</a><br>
+            <a href='signin.php'>Sign In</a>
+        </div>"; 
+        ?>
 
         <div class="categorybar">
             <div class="categories" id="sports">
