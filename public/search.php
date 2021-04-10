@@ -16,11 +16,33 @@
    <?php include "header.php"; echo $header; ?>
 
    <?php 
+   if(isset($_GET['search'])) {
+    $searchTerm = $_GET['search'];
+    echo "<h1>Searching for: " . $searchTerm . "</h1>";
+    // users can search for posts by keyword within title
+    include "script/connect.php";
+    $connection = connect();
+    $sql = "SELECT * FROM threads WHERE title LIKE '%" . $searchTerm . "%'";
+    $results = mysqli_query($connection, $sql);
+    $searchResults = 0; // were any results found?
+    echo "<div class=\"layout\">
+    <div class=\"postblock\">";
+    while($row = mysqli_fetch_assoc($results)) {
+        $searchResults += 1;
+        echo "<div class='post'>";
+        echo "<h3><a href=thread.php?thread=" . $row["threadId"] . ">" . $row["title"] . "</a></h3>";
+        echo "</div>";
+    }
+    echo "</div></div>";
+    echo $searchResults . " threads found.";
+} else echo "<h3>Please enter a search term.</h3>";
+  
    
-   $searchTerm = $_GET['search'];
+
    
-   if (!empty($searchTerm)) echo "<h3>Searching for: \" " . $searchTerm . " \" </h3>";
-   else echo "<h3>Please enter a search term.</h3>"
+  
+   // admin can search for users by username or email
+   
    ?>
 
    </body>
