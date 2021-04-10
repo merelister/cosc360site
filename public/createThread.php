@@ -23,7 +23,7 @@ todo: category is drop down -->
     echo $header; ?>
 
 
-    <form method="GET" action="submitThread.php">
+    <form method="GET" action="script/submitThread.php">
         <input type="text" placeholder="Thread title" name="title" required> <br>
         <textarea name="content" placeholder="Post body" cols="25" rows="10" required> </textarea>
         <br>
