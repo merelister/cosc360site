@@ -13,45 +13,78 @@
 </head>
 
 <body>
-   <?php include "header.php"; echo $header; ?>
+   <?php include "header.php"; echo $header; 
+    
 
-   <?php 
    if(isset($_GET['search']) && isset($_GET['type']) && isset($_SESSION['role'])) {
         $searchType = $_GET['type'];
         $searchTerm = $_GET['search'];
-        if($searchType == "posts") searchPosts($searchTerm);
+        
         // admin can search for users by username or email
-        if($_SESSION['role']) {
-            
-        }
+        if($_SESSION['role'] == 1) searchPosts($searchTerm, $searchType);
    }
-  
-   if(isset($_GET['search'])) {
+   
+  // users can search for posts by title
+   else if(isset($_GET['search'])) {
     $searchTerm = $_GET['search'];
-    searchPosts($searchTerm);
+    searchPosts($searchTerm, 'posts');
    } else echo "<h3>Please enter a search term.</h3>";
 
    
-  
    
-    function searchPosts($searchTerm) {
-        echo "<h1>Searching for: " . $searchTerm . "</h1>";
-        // users can search for posts by keyword within title
+    function searchPosts($searchTerm, $searchType) {
+        echo "<h1>Searching for " . $searchType . " containing '" . $searchTerm . "'</h1>";
+        
+        switch($searchType) {
+            case 'posts':
+                $sql = "SELECT * FROM threads WHERE title LIKE '%" . $searchTerm . "%'";
+                break;
+            case 'usernames':
+                $sql = "SELECT * FROM user WHERE displayName LIKE '%" . $searchTerm . "%'";
+                break;
+            case 'emails':
+                "SELECT * FROM user WHERE email LIKE '%" . $searchTerm . "%'";
+                break;
+            default:
+                echo "Error: invalid search";
+                return;
+                break;
+            }
+                
         include "script/connect.php";
         $connection = connect();
-        $sql = "SELECT * FROM threads WHERE title LIKE '%" . $searchTerm . "%'";
         $results = mysqli_query($connection, $sql);
         $searchResults = 0; // were any results found?
         echo "<div class=\"layout\">
         <div class=\"postblock\">";
-        while($row = mysqli_fetch_assoc($results)) {
-            $searchResults += 1;
-            echo "<div class='post'>";
-            echo "<h3><a href=thread.php?thread=" . $row["threadId"] . ">" . $row["title"] . "</a></h3>";
-            echo "</div>";
+
+        switch($searchType){
+            case 'posts':
+                while($row = mysqli_fetch_assoc($results)) {
+                    $searchResults += 1;
+                    echo "<div class='post'>";
+                    echo "<h3><a href=thread.php?thread=" . $row["threadId"] . ">" . $row["title"] . "</a></h3></div>";
+                }
+                    break;
+            case 'usernames':
+                while($row = mysqli_fetch_assoc($results)) {
+                    $searchResults += 1;
+                    echo "<div class='post'>";
+                    echo "<h3><a href=profile.php?id=" . $row["userId"] . ">" . $row["displayName"] . "</a></h3></div>";
+                }
+                break;
+            case 'emails':
+                while($row = mysqli_fetch_assoc($results)) {
+                    $searchResults += 1;
+                    echo "<div class='post'>";
+                    echo "<h3><a href=profile.php?id=" . $row["userId"] . ">" . $row["displayName"] . "</a></h3></div>";
+                }
+                break;
+            default:
+                break;
         }
         echo "</div></div>";
-        echo $searchResults . " threads found.";
+        echo $searchResults . " ". $searchType . " found.";
     }
    
    ?>

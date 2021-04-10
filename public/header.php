@@ -45,9 +45,9 @@ if ($auth == true && $role == 0) {
             <form class="example" action="search.php" method="GET">
                 <input type="text" placeholder="Search.." name="search" class="searchbar">
                 <select name="type">
-                <option value="post">Posts</option>
-                <option value="username">Username</option>
-                <option value="email">Email</option>
+                <option value="posts">Posts</option>
+                <option value="usernames">Username</option>
+                <option value="emails">Email</option>
                 </select>
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
