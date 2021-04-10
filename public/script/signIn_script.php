@@ -43,6 +43,8 @@ else
             $_SESSION['authenticated'] = true;
             $_SESSION['userid'] = $row['userId'];
             $_SESSION['username'] = $row['displayName'];
+            // user: role=0     admin: role=1
+            $_SESSION['role'] = $row['role'];
             
             header( "Location: ../home.php" );
         }

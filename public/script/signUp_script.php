@@ -41,7 +41,7 @@ else
             $_SESSION['userid'] = mysqli_insert_id($connection);
             $_SESSION['username'] = $username;
 
-            header( "Location: url='../home.php'");
+            header( "Location: url=../home.php");
         }
         else
         {
