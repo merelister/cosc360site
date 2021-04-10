@@ -59,7 +59,7 @@
 
     <div class="sidebar">
         <div class="posthistory">
-            <a href="profile.html"><h3>@avguser #Jane Doe</h3></a>
+            <a href='profile.php/?id=' . $userid><h3>@avguser #Jane Doe</h3></a>
             <p>No more iPhones?</p>
             <p>First Post! :)</p>
             <p>First Post! :)</p>
