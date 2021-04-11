@@ -15,36 +15,53 @@
 <body>
    <?php include "header.php"; echo $header; 
     
+   
+    if(isset($_GET['search'])) $searchTerm = $_GET['search'];
+    else $searchTerm = '';
 
-   if(isset($_GET['search']) && isset($_GET['type']) && isset($_SESSION['role'])) {
-        $searchType = $_GET['type'];
-        $searchTerm = $_GET['search'];
+    if(isset($_GET['category'])) $category = $_GET['category'];
+    else $category = '';
+
+    if(isset($_GET['type'])) $searchType = $_GET['type'];
+    else $searchType = 'posts';
+
+    if ($searchTerm != '' && $searchType != 'users' && $category == '') echo "<h1 id='toptext'>Searching for " . $searchType . " containing '" . $searchTerm . "'</h1><br>";
+    if ($searchTerm == '' && $category != '' && $searchType != 'users' ) echo "<h1 id='toptext'>Showing all results for " . $category . "</h1><br>";
+    if ($searchTerm != '' && $searchType == 'posts' && $category != '') echo "<h1 id='toptext'>Searching for " . $searchTerm . " in " . $category . "</h1><br>";
+    if ($searchTerm == '' && $category == '' && $searchType != 'users') echo "<h1 id='toptext'>Showing all posts</h1><br>";
+    if ($searchType == 'users') echo "<h1 id='toptext'>Showing users</h1><br>";
+
+    echo "<form action='search.php'>
+            <input type='text' name='search' value='".$searchTerm."' style='display:none'>
+            <select id=\"category\" name=\"type\" style='width:10em'>
+                <option value=\"posts\" disabled selected>Search...</option>
+                <option value=\"posts\">Posts</option>
+                <option value=\"users\">Users</option>
+            </select>";
+
+    if ($searchType == 'posts') echo "<select id=\"category\" name=\"category\" style='width:10em; margin-left:0.5em'>
+                                        <option value=\"\" disabled selected>Category...</option>
+                                        <option value=\"Sports\">Sports</option>
+                                        <option value=\"News\">News</option>
+                                        <option value=\"Art\">Art</option>
+                                        <option value=\"Nature\">Nature</option>
+                                    </select>";
         
-        // admin can search for users by username or email
-        if($_SESSION['role'] == 1) searchPosts($searchTerm, $searchType);
-   }
-   
-  // users can search for posts by title
-   else if(isset($_GET['search'])) {
-    $searchTerm = $_GET['search'];
-    searchPosts($searchTerm, 'posts');
-   } else echo "<h3>Please enter a search term.</h3>";
+    echo "<button type=\"submit\" style='margin-left:0.5em'><i class=\"fa fa-search\"></i></button></form>";
 
+    searchPosts($searchTerm, $searchType, $category);
    
-   
-    function searchPosts($searchTerm, $searchType) {
-        echo "<h1>Searching for " . $searchType . " containing '" . $searchTerm . "'</h1>";
+    function searchPosts($searchTerm, $searchType, $cat) {
         
         switch($searchType) {
             case 'posts':
-                $sql = "SELECT * FROM threads WHERE title LIKE '%" . $searchTerm . "%'";
+                $sql = "SELECT * FROM threads WHERE title LIKE '%" . $searchTerm . "%' AND category LIKE '%" . $cat. "%'";
                 break;
-            case 'usernames':
-                $sql = "SELECT * FROM user WHERE displayName LIKE '%" . $searchTerm . "%'";
+
+            case 'users':
+                $sql = "SELECT * FROM user WHERE displayName LIKE '%" . $searchTerm . "%' OR email LIKE '%" . $searchTerm . "%'";
                 break;
-            case 'emails':
-                $sql = "SELECT * FROM user WHERE email LIKE '%" . $searchTerm . "%'";
-                break;
+
             default:
                 echo "Error: invalid search";
                 return;
@@ -62,29 +79,35 @@
             case 'posts':
                 while($row = mysqli_fetch_assoc($results)) {
                     $searchResults += 1;
-                    echo "<div class='post'>";
-                    echo "<h3><a href=thread.php?thread=" . $row["threadId"] . ">" . $row["title"] . "</a></h3></div>";
+                   
+                    $sql2 = "SELECT content FROM comments WHERE threadId = " . $row['threadId'] . "";
+                    $results2 = mysqli_query($connection, $sql2);
+                    $row2 = mysqli_fetch_assoc($results2);
+
+                    echo "<a href=\"thread.php?thread=" . $row['threadId'] . "\">
+                            <div class=\"post\" id='search'>
+                                <h3>" . $row['title'] . "</h3>
+                                <p>". $row2['content'] ."</p>
+                            </a>
+                        </div>";
                 }
                     break;
-            case 'usernames':
+
+            case 'users':
                 while($row = mysqli_fetch_assoc($results)) {
                     $searchResults += 1;
-                    echo "<div class='post'>";
-                    echo "<h3><a href=profile.php?id=" . $row["userId"] . ">" . $row["displayName"] . "</a></h3></div>";
+                    echo "<div class='post' id='search'>";
+                    echo "<img class=\"usericon\" width=\"50\" height=\"50\" src=\"script/images/" . $row["userId"] . ".jpg\">";
+                    echo "<h3 style='margin-left:3em'><a href=profile.php?id=" . $row["userId"] . ">" . $row["displayName"] . "</a></h3></div>";
                 }
                 break;
-            case 'emails':
-                while($row = mysqli_fetch_assoc($results)) {
-                    $searchResults += 1;
-                    echo "<div class='post'>";
-                    echo "<h3><a href=profile.php?id=" . $row["userId"] . ">" . $row["displayName"] . "</a></h3></div>";
-                }
-                break;
+
             default:
                 break;
         }
+
         echo "</div></div>";
-        echo $searchResults . " ". $searchType . " found.";
+        echo "<p style='text-align:center; margin-left:-4em'>".$searchResults . " ". $searchType . " found.</p>";
     }
    
    ?>

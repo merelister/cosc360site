@@ -15,14 +15,12 @@
 
 <body>
     <?php include "header.php";
-    echo $header; ?>
-
-
-    <?php
+    echo $header; 
 
     $thisId = $_GET['id'];
 
     $email = "";
+    $postHistory = "";
 
     $host = "localhost";
     $database = "360site";
@@ -35,61 +33,68 @@
     if ($error != null) {
         $output = "<p>Unable to connect to database!</p>";
         exit($output);
-    } else {
+    } 
+    
+    else {
         //signed in do your thing
-        if (isset($_SESSION['userid'])) {
-            $postHistory = "";
 
-            //query the login info
-            $sql = "SELECT * FROM user WHERE userId ='$thisId';";
+        $sql = "SELECT * FROM user WHERE userId ='$thisId';";
             $results = mysqli_query($connection, $sql);
             $count = mysqli_num_rows($results);
 
             if ($count == 0) {
-                echo ("invalid results");
-                echo ("<br>");
-                echo ("<br>");
+                header("Location: error_page.php");
             } else {
                 $row = mysqli_fetch_assoc($results);
-                $email = $row['email'];
+                if ($thisId == $userid) $email = $row['email'];
                 $username = $row['displayName'];
-
+                $joinDate = $row['joinDate'];
             }
+
+        if (isset($_SESSION['userid'])) {
+            $postHistory = "";
 
             //now query the post history
             $sql = "SELECT * FROM comments WHERE userId ='$thisId';";
             $results = mysqli_query($connection, $sql);
             $count = mysqli_num_rows($results);
 
-            if ($count == 0) {
-                $postHistory = "<p>User has no post history!</p>";
-            } else {
-
+            if ($count != 0) {
                 //get all the users comments
                 while ($row = mysqli_fetch_assoc($results)){
-                    $postHistory = $postHistory . "<p>" . $row['content'] . "</p>";
+
+                    $sql2 = "SELECT title FROM threads WHERE threadId = " . $row['threadId'] . "";
+                    $results2 = mysqli_query($connection, $sql2);
+                    $row2 = mysqli_fetch_assoc($results2);
+
+                    $postHistory = $postHistory ."<a href=\"thread.php?thread=" . $row['threadId'] . "\">". $row2['title'] ."</a> : " . $row['content'] . "<br><br>";
                 }
-
             }
-
-            //close connection
-            mysqli_free_result($results);
-            mysqli_close($connection);
+            else{
+                $postHistory = "<p>User has no post history!</p>";
+            }
         }
+        //close connection
+        mysqli_free_result($results);
+        mysqli_close($connection);
     }
 
-    $body = '
-    <img src="script/images/' . $thisId . '.jpg" width="150" height="150" class="usericon">
-    <i class="fa fa-pencil" aria-label="Edit profile picture"></i>
+    echo '
+    <img src="script/images/' . $thisId . '.jpg" width="150" height="150" class="usericon" id="profilepage" style="z-index:0"><br><br><br><br><br><br>
     <h1>' . $username . '</h1>
-    <i class="fa fa-pencil" aria-label="Edit username"></i>
-    <p>' . $email . '</p>
-    <div class="posthistory sidebar">
+    <p> Joined on ' . $joinDate . '</p>
+    <p>' . $email . '</p>';
+
+    if ($thisId == $userid) echo '<i class="fa fa-pencil" aria-label="Edit username"></i> <a href="update.php/?id=' . $userid . '">Edit username or profile pic</a><br><br>';
+    
+    echo '<br>
+    <h3 style="border-bottom:none"> Comment History </h3>
+    <div class="posthistory">
         ' . $postHistory . '
     </div>
     ';
 
-    echo($body);
+    
     ?>
 
 
