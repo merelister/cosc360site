@@ -25,20 +25,21 @@
     if(isset($_GET['type'])) $searchType = $_GET['type'];
     else $searchType = 'posts';
 
-    if ($searchTerm != '' && $searchType != 'users') echo "<h1 id='toptext'>Searching for " . $searchType . " containing '" . $searchTerm . "'</h1><br>";
-    if ($category != '' && $searchType != 'users') echo "<h1 id='toptext'>Showing all results for " . $category . "</h1><br>";
+    if ($searchTerm != '' && $searchType != 'users' && $category == '') echo "<h1 id='toptext'>Searching for " . $searchType . " containing '" . $searchTerm . "'</h1><br>";
+    if ($searchTerm == '' && $category != '' && $searchType != 'users' ) echo "<h1 id='toptext'>Showing all results for " . $category . "</h1><br>";
+    if ($searchTerm != '' && $searchType == 'posts' && $category != '') echo "<h1 id='toptext'>Searching for " . $searchTerm . " in " . $category . "</h1><br>";
     if ($searchTerm == '' && $category == '' && $searchType != 'users') echo "<h1 id='toptext'>Showing all posts</h1><br>";
     if ($searchType == 'users') echo "<h1 id='toptext'>Showing users</h1><br>";
 
     echo "<form action='search.php'>
             <input type='text' name='search' value='".$searchTerm."' style='display:none'>
-            <select id=\"category\" name=\"type\">
+            <select id=\"category\" name=\"type\" style='width:10em'>
                 <option value=\"posts\" disabled selected>Search...</option>
                 <option value=\"posts\">Posts</option>
                 <option value=\"users\">Users</option>
             </select>";
 
-    if ($searchType == 'posts') echo "<select id=\"category\" name=\"category\">
+    if ($searchType == 'posts') echo "<select id=\"category\" name=\"category\" style='width:10em; margin-left:0.5em'>
                                         <option value=\"\" disabled selected>Category...</option>
                                         <option value=\"Sports\">Sports</option>
                                         <option value=\"News\">News</option>
@@ -46,7 +47,7 @@
                                         <option value=\"Nature\">Nature</option>
                                     </select>";
         
-    echo "<button type=\"submit\" style='margin-left:0.2em'><i class=\"fa fa-search\"></i></button></form>";
+    echo "<button type=\"submit\" style='margin-left:0.5em'><i class=\"fa fa-search\"></i></button></form>";
 
     searchPosts($searchTerm, $searchType, $category);
    
@@ -91,7 +92,6 @@
                         </div>";
                 }
                     break;
-
 
             case 'users':
                 while($row = mysqli_fetch_assoc($results)) {

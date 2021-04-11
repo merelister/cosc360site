@@ -17,7 +17,7 @@
 
     <div class="layout">
     <div class="postblock">
-    <h2 style="margin-left: 1em;"> NEW POSTS </h2>
+    <h2 style="margin-left: 1em; border-bottom:none"> NEW POSTS </h2>
 
     <?php
     $host = "localhost";

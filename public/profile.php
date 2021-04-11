@@ -48,6 +48,7 @@
                 $row = mysqli_fetch_assoc($results);
                 if ($thisId == $userid) $email = $row['email'];
                 $username = $row['displayName'];
+                $joinDate = $row['joinDate'];
             }
 
         if (isset($_SESSION['userid'])) {
@@ -78,21 +79,22 @@
         mysqli_close($connection);
     }
 
-    $body = '
-    <img src="script/images/' . $thisId . '.jpg" width="150" height="150" class="usericon" id="profilepage"><br><br><br><br><br><br>
+    echo '
+    <img src="script/images/' . $thisId . '.jpg" width="150" height="150" class="usericon" id="profilepage" style="z-index:0"><br><br><br><br><br><br>
     <h1>' . $username . '</h1>
-    <p>' . $email . '</p>
+    <p> Joined on ' . $joinDate . '</p>
+    <p>' . $email . '</p>';
 
-    <i class="fa fa-pencil" aria-label="Edit username"></i> Edit username<br>
-    <i class="fa fa-pencil" aria-label="Edit profile picture"></i> Edit profile pic
-    <br><br>
+    if ($thisId == $userid) echo '<i class="fa fa-pencil" aria-label="Edit username"></i> <a href="update.php/?id=' . $userid . '">Edit username or profile pic</a><br><br>';
+    
+    echo '<br>
     <h3 style="border-bottom:none"> Comment History </h3>
     <div class="posthistory">
         ' . $postHistory . '
     </div>
     ';
 
-    echo($body);
+    
     ?>
 
 
