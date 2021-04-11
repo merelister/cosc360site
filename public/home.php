@@ -17,6 +17,7 @@
 
     <div class="layout">
     <div class="postblock">
+    <h2 style="margin-left: 1em;"> NEW POSTS </h2>
 
     <?php
     $host = "localhost";
@@ -26,7 +27,7 @@
 
     $connection = mysqli_connect($host, $user, $password, $database);
 
-    $sql = "SELECT * FROM threads";
+    $sql = "SELECT * FROM threads ORDER BY creationDate DESC";
     $results = mysqli_query($connection, $sql);
     
 
@@ -69,24 +70,24 @@
         <div class="categorybar">
 
 
-            <div class="categories" id="sports">
+        <a href="search.php?search=&category=Sports"><div class="categories" id="sports">
                 Sports
-            </div>
+            </div></a>
 
 
-            <div class="categories" id="news">
+            <a href="search.php?search=&category=News"><div class="categories" id="news">
                 News
-            </div>
+            </div></a>
 
 
-            <div class="categories" id="art">
+            <a href="search.php?search=&category=Art"><div class="categories" id="art">
                 Art
-            </div>
+            </div></a>
 
 
-            <div class="categories" id="nature">
+            <a href="search.php?search=&category=Nature"><div class="categories" id="nature">
                 Nature
-            </div>
+            </div></a>
 
 
 
