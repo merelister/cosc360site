@@ -2,7 +2,8 @@
 <html>
     <body> -->
 <?php
-include "script/connect.php";
+include "connect.php";
+
 if($_SERVER["REQUEST_METHOD"] == "GET") {
     echo "get";
     if(isset($_GET["comment"]) && isset($_GET["thread"])) {
@@ -19,7 +20,7 @@ if($_SERVER["REQUEST_METHOD"] == "GET") {
         mysqli_close($connection);
 
         // go back to the thread
-        header("Location: thread.php?thread=" . $threadId );
+        header("Location: ../thread.php?thread=" . $threadId );
     }
 }
 ?>

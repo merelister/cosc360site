@@ -16,7 +16,7 @@
 <body>
       <?php include "header.php"; echo $header; ?>
 
-        <form method="post" action="script/signup_script.php">
+        <form method="post" action="script/signup_script.php" enctype="multipart/form-data">
             <div class="signupcontainer">
               <h1>Register</h1>
               <p>Fill in this form to get started.</p>
@@ -33,6 +33,10 @@
           
               <label for="pass-repeat"><b>Repeat Password</b></label>
               <input type="password" placeholder="Repeat Password" name="pass-repeat" id="confirm_password" class="regentry" required>
+
+              <label for="image"><b>Profile Picture</b></label>
+              <input type="file" name="image" id="image" class="regentry" accept=".jpg" required>
+
               <hr>
           
               <p>By creating an account you agree to our <a href="#" onclick="openForm()">Terms & Privacy</a>.</p>
@@ -51,6 +55,6 @@
               </p>
               <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
           </div>
-
+          <?php echo $footer ?>
 </body>
 </html>

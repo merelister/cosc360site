@@ -9,34 +9,41 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/360_site.css">
     <link rel="stylesheet" href="css/360_signup.css">
+    <script type="text/javascript" src="script/signup.js"></script>
     <script type="text/javascript" src="script/mainpage2.js"></script>
 </head>
 
 <body>
-    <?php include "header.php"; echo $header; ?>
+      <?php include "header.php"; echo $header; 
+      
+      if ($auth != true) header("Location: error_page.php");
+      if (isset($_GET['id'])) $thisId = $_GET['id'];
+      if ($thisId != $userid) header("Location: error_page.php");
+      
+      ?>
 
-        <form method="post" action="script/signin_script.php">
+        <form method="post" action="script/update_script.php" enctype="multipart/form-data">
             <div class="signupcontainer">
-              <h1>Sign in</h1>
-              <p>Welcome back!</p>
+              <h1 id="toptext">Update account</h1>
               <hr>
-          
+
               <label for="username"><b>Username</b></label>
-              <input type="text" placeholder="Enter Username" name="username" id="username" class="regentry" required>
-          
+              <input type="text" placeholder="Enter Username" name="username" id="username" class="regentry">
+
+              <label for="image"><b>Profile Picture</b></label>
+              <input type="file" name="image" id="image" class="regentry" accept=".jpg" style="background:none">
+
+              <input type="text" value="<?php echo $thisId ?>" name="id" style="display:none">
+
+              <hr>
+
               <label for="pass"><b>Password</b></label>
               <input type="password" placeholder="Enter Password" name="password" id="password" class="regentry" required>
-
-            </div>
-            <button type="submit" class="registerbtn" onclick="">Sign In</button>
-            <div class="signupcontainer">
-            <br>
-              <p>Dont have an account yet? <a href="signup.php">Sign up</a>.</p>
-              <p>Forgot your password? <a href="recover.php">Recover Password</a>.</p>
+          
+              <p>Please confirm your password to make changes.</p>
+              <button type="submit" class="registerbtn">Update</button>
             </div>
           </form>
-
-
           <?php echo $footer ?>
 </body>
 </html>

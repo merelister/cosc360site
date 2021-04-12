@@ -1,5 +1,7 @@
 # cosc360site
 
+TODO: Update README to remove laraval information and instead specify instructions for xampp
+
 ## Creating Pull Requests
 Create a pull request whenever you want to add changes from a branch to the main branch.
 

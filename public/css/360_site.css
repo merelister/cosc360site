@@ -1,4 +1,4 @@
-  .postblock {
+.postblock {
     display: flex;
     flex-direction: column;
     flex:3;
@@ -10,6 +10,7 @@ header {
   height: 6em;
   position: sticky;
   top: 0;
+  z-index: 5;
 }
 
 .sidebar {
@@ -117,12 +118,26 @@ form.example input[type=text] {
     header{
       height: 10em;
     }
+    
   }
-  
+
+  #search{
+    margin-left: 0em;
+  }
+
+  #toptext{
+    position: relative;
+    text-indent: -8em;
+    border-bottom: none;
+    margin-left: 8em;
+  }
 
   @media screen and (min-width: 1600px) {
     .postblock{
       margin-left: -20em;
+    }
+    #search{
+      margin-left: 20em;
     }
   }
 
@@ -166,9 +181,9 @@ form.example input[type=text] {
 
   .dropdown {
     right: 2em;
-    height: 3.5em;
-    width: 3.5em;
     float: right;
+    height: 50px;
+    width: 50px;
     position: relative;
     top: 1em
   }
@@ -221,3 +236,10 @@ form.example input[type=text] {
   main{
     float: left;
   }
+
+  .footer {
+    position:relative;
+    bottom: 0em;
+    color: white;
+    text-align: center;
+ }

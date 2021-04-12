@@ -10,6 +10,22 @@ $connection = connect();
         $username = $_POST['username'];
         $email= $_POST['email'];
         $password= $_POST['password'];
+
+        if(isset($_FILES['image'])){
+            $errors= array();
+            $file_name = $_FILES['image']['name'];
+            $file_size = $_FILES['image']['size'];
+            $file_tmp = $_FILES['image']['tmp_name'];
+            $file_type = $_FILES['image']['type'];
+            $file_ext = @strtolower(end(explode('.',$_FILES['image']['name'])));
+            
+            $extensions= array("jpg");
+            
+            if(in_array($file_ext,$extensions)=== false){
+               $errors[]="extension not allowed, please choose a JPEG or PNG file.";
+            }
+         }
+
         //hash the password
         $pass = md5($password);
         
@@ -22,13 +38,19 @@ $connection = connect();
             //query the user info
             $query = "INSERT INTO user (displayName,email,password) VALUES ('$username','$email','$pass');";
             $result = mysqli_query($connection, $query);
-
+            $userid =  mysqli_insert_id($connection);
             session_start();
             $_SESSION['authenticated'] = true;
-            $_SESSION['userid'] = mysqli_insert_id($connection);
+            $_SESSION['userid'] = $userid;
             $_SESSION['username'] = $username;
 
-            header( "Location: url=../home.php");
+            if(empty($errors)==true){
+                move_uploaded_file($file_tmp,"images/".$userid .".". $file_ext);
+             }else{
+                print_r($errors);
+             }
+
+           header("Location: ../home.php");
         }
         else
         {

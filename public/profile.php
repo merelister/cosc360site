@@ -15,89 +15,91 @@
 
 <body>
     <?php include "header.php";
-    echo $header; ?>
+echo $header; 
 
+$thisId = $_GET['id'];
 
-    <?php
+if(isset($_SESSION["role"])) $role = $_SESSION["role"];
+$email = "";
+$postHistory = "";
 
-    $thisId = $_GET['id'];
+include "script/connect.php";
+$connection = connect();
 
-    include "script/connect.php";
-    $connection = connect();
+$sql = "SELECT * FROM user WHERE userId ='$thisId'";
+$results = mysqli_query($connection, $sql);
+$count = mysqli_num_rows($results);
 
-  
- 
-    if(isset($_SESSION["role"])) $role = $_SESSION["role"];
-        //signed in do your thing
-        if (isset($_SESSION['userid'])) {
-            $postHistory = "";
+if ($count == 0) {
+    header("Location: error_page.php");
+} else {
+    $row = mysqli_fetch_assoc($results);
+    if ($thisId == $userid) $email = $row['email'];
+    $username = $row['displayName'];
+    $profilerole = $row['role'];
+    $joinDate = $row['joinDate'];
 
-            //query the login info
-            $sql = "SELECT * FROM user WHERE userId ='$thisId'";
-            $results = mysqli_query($connection, $sql);
-            $count = mysqli_num_rows($results);
+    // admin can disable/enable users
+    if($role == 1 && $profilerole != -1) {
+        echo '<form action="script/toggleUserEnable.php" method="GET">
+        <input type="hidden" name="id" value="'.$thisId.'">
+        <input type="hidden" name="toggle" value="disable">
+        <button type="submit">Disable user</button> </form>';
+    } else if($role == 1 && $profilerole == -1) {
+        echo '<form action="script/toggleUserEnable.php" method="GET">
+        <input type="hidden" name="id" value="'.$thisId.'">
+        <input type="hidden" name="toggle" value="enable">
+        <button type="submit">Enable user</button> </form>';
+    }
+    
+}
 
-            if ($count == 0) {
-                echo ("invalid results");
-                echo ("<p><a href=\"http://localhost/cosc360site/public/signin.php\">Return to login</a></p>");
-            } else {
-                $row = mysqli_fetch_assoc($results);
-                $email = $row['email'];
-                $username = $row['displayName'];
-                $profilerole = $row['role'];
+if (isset($_SESSION['userid'])) {
+    $postHistory = "";
 
-                // admin can disable/enable users
-                 if($role == 1 && $profilerole != -1) {
-                 echo '<form action="script/toggleUserEnable.php" method="GET">
-                 <input type="hidden" name="id" value="'.$thisId.'">
-                 <input type="hidden" name="toggle" value="disable">
-                 <button type="submit">Disable user</button> </form>';
-             } else if($role == 1 && $profilerole == -1) {
-                echo '<form action="script/toggleUserEnable.php" method="GET">
-                <input type="hidden" name="id" value="'.$thisId.'">
-                <input type="hidden" name="toggle" value="enable">
-                <button type="submit">Enable user</button> </form>';
-             }
+    //now query the post history
+    $sql = "SELECT * FROM comments WHERE userId ='$thisId';";
+    $results = mysqli_query($connection, $sql);
+    $count = mysqli_num_rows($results);
+
+    if ($count != 0) {
+        //get all the users comments
+        while ($row = mysqli_fetch_assoc($results)){
+
+            $sql2 = "SELECT title FROM threads WHERE threadId = " . $row['threadId'] . "";
+            $results2 = mysqli_query($connection, $sql2);
+            $row2 = mysqli_fetch_assoc($results2);
+
+            $postHistory = $postHistory ."<a href=\"thread.php?thread=" . $row['threadId'] . "\">". $row2['title'] ."</a>
+            <div style='float:right; font-size:11px'>" . $row['date'] . "</div> : <p>" . $row['content'] . "</p>";
         }
-            
-
-            //now query the post history
-            $sql = "SELECT * FROM comments WHERE userId ='$thisId';";
-            $results = mysqli_query($connection, $sql);
-            $count = mysqli_num_rows($results);
-
-            if ($count == 0) {
-                $postHistory = "<p>User has no post history!</p>";
-            } else {
-
-                //get all the users comments
-                while ($row = mysqli_fetch_assoc($results)){
-                    $postHistory = $postHistory . "<p>" . $row['content'] . "</p>";
-                }
-
-            }
-
-            //close connection
-            mysqli_free_result($results);
-            mysqli_close($connection);
-        }
+    }
+    else {
+        $postHistory = "<p>User has no post history!</p>";
+    }
+    
+//close connection
+mysqli_free_result($results);
+mysqli_close($connection);
     
 
-    $body = '
-    <img src="https://thispersondoesnotexist.com/image" width="150" height="150" class="user-icon">
-    <i class="fa fa-pencil" aria-label="Edit profile picture"></i>
+    echo '
+    <img src="script/images/' . $thisId . '.jpg" width="150" height="150" class="usericon" alt="User Image" id="profilepage" style="z-index:0"><br><br><br><br><br><br>
     <h1>' . $username . '</h1>
-    <i class="fa fa-pencil" aria-label="Edit username"></i>
-    <p>' . $email . '</p>
-    <div class="posthistory sidebar">
+    <p> Joined on ' . $joinDate . '</p>
+    <p>' . $email . '</p>';
+
+    if ($thisId == $userid) echo '<i class="fa fa-pencil" aria-label="Edit username"></i> <a href="update.php/?id=' . $userid . '">Edit username or profile pic</a><br><br>';
+    
+    echo '<br>
+    <h3 style="border-bottom:none"> Comment History </h3>
+    <div class="posthistory">
         ' . $postHistory . '
     </div>
     ';
 
-    echo($body);
+    
     ?>
 
-
-</body>
-
-</html>
+<?php echo $footer; ?>
+</body></html>

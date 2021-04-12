@@ -36,6 +36,7 @@ $connection = connect();
             $_SESSION['username'] = $row['displayName'];
             // user: role=0     admin: role=1
             $_SESSION['role'] = $row['role'];
+            $_SESSION['ppic'] = base64_encode($row['avatar']);
             
             header( "Location: ../home.php" );
         }
