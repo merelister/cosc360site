@@ -77,3 +77,7 @@ if ($auth != true) {
         </form>
     </header>';
 }
+
+$footer = "<br><br><div class='footer'>
+                <i style='font-size:11px'>Copyright © 2021 All rights reserved by Rabbit</i>
+            </div>";

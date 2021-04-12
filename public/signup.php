@@ -55,6 +55,6 @@
               </p>
               <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
           </div>
-
+          <?php echo $footer ?>
 </body>
 </html>

@@ -44,5 +44,6 @@
               <button type="submit" class="registerbtn">Update</button>
             </div>
           </form>
+          <?php echo $footer ?>
 </body>
 </html>

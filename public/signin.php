@@ -37,6 +37,6 @@
           </form>
 
 
-
+          <?php echo $footer ?>
 </body>
 </html>

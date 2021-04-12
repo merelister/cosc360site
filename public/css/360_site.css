@@ -236,3 +236,10 @@ form.example input[type=text] {
   main{
     float: left;
   }
+
+  .footer {
+    position:relative;
+    bottom: 0em;
+    color: white;
+    text-align: center;
+ }

@@ -67,7 +67,8 @@
                     $results2 = mysqli_query($connection, $sql2);
                     $row2 = mysqli_fetch_assoc($results2);
 
-                    $postHistory = $postHistory ."<a href=\"thread.php?thread=" . $row['threadId'] . "\">". $row2['title'] ."</a> : " . $row['content'] . "<br><br>";
+                    $postHistory = $postHistory ."<a href=\"thread.php?thread=" . $row['threadId'] . "\">". $row2['title'] ."</a>
+                    <div style='float:right; font-size:11px'>" . $row['date'] . "</div> : <p>" . $row['content'] . "</p>";
                 }
             }
             else{
@@ -97,7 +98,7 @@
     
     ?>
 
-
+<?php echo $footer ?>
 </body>
 
 </html>
