@@ -81,7 +81,7 @@
     }
 
     echo '
-    <img src="script/images/' . $thisId . '.jpg" width="150" height="150" class="usericon" id="profilepage" style="z-index:0"><br><br><br><br><br><br>
+    <img src="script/images/' . $thisId . '.jpg" width="150" height="150" class="usericon" alt="User Image" id="profilepage" style="z-index:0"><br><br><br><br><br><br>
     <h1>' . $username . '</h1>
     <p> Joined on ' . $joinDate . '</p>
     <p>' . $email . '</p>';

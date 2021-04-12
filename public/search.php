@@ -97,7 +97,7 @@
                 while($row = mysqli_fetch_assoc($results)) {
                     $searchResults += 1;
                     echo "<div class='post' id='search'>";
-                    echo "<img class=\"usericon\" width=\"50\" height=\"50\" src=\"script/images/" . $row["userId"] . ".jpg\">";
+                    echo "<img alt=\"user icon\" class=\"usericon\" width=\"50\" height=\"50\" src=\"script/images/" . $row["userId"] . ".jpg\">";
                     echo "<h3 style='margin-left:3em'><a href=profile.php?id=" . $row["userId"] . ">" . $row["displayName"] . "</a></h3></div>";
                 }
                 break;

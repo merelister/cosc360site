@@ -17,10 +17,10 @@ if (isset($_SESSION['ppic'])) $ppic = $_SESSION['ppic'];
 
 if ($auth == true && $role == 0) {
     $header = '<header id="header">
-            <a href="home.php" style="position: relative; z-index : 10;"><img src="images/rabbit.png" id="logo"></a>
+            <a href="home.php" style="position: relative; z-index : 10;"><img src="images/rabbit.png" id="logo" alt="Rabbit Logo"></a>
 
             <div class="dropdown">
-                <a onclick="dropdown()"><img class="usericon" width="50" height="50" src="script/images/' . $userid . '.jpg"></a>
+                <a onclick="dropdown()"><img class="usericon" alt="User Icon" width="50" height="50" src="script/images/' . $userid . '.jpg"></a>
                 <div id="myDropdown" class="dropdown-content">
                     <a href="profile.php/?id=' . $userid . '">Profile</a>
                     <a href="createThread.php">➕ New Thread</a>
@@ -40,9 +40,9 @@ if ($auth == true && $role == 0) {
 else if ($auth == true && $role == 1) {
     // admin header
     $header = '<header id="header">
-            <a href="home.php" style="position: relative; z-index : 10;"><img src="images/rabbit.png" id="logo"></a>
+            <a href="home.php" style="position: relative; z-index : 10;"><img src="images/rabbit.png" alt="Rabbit Logo" id="logo"></a>
             <div class="dropdown">
-                <a onclick="dropdown()"><img class="usericon" width="50" height="50" src="script/images/' . $userid . '.jpg"></a>
+                <a onclick="dropdown()"><img class="usericon" alt="User Icon" width="50" height="50" src="script/images/' . $userid . '.jpg"></a>
                 <div id="myDropdown" class="dropdown-content">
                     <a href="profile.php?id=' . $userid . '">Profile</a>
                     <a href="createThread.php">➕ New Post</a>
@@ -60,10 +60,10 @@ else if ($auth == true && $role == 1) {
 
 if ($auth != true) {
     $header = '<header id="header">
-    <a href="home.php" style="position: relative; z-index : 10;"><img src="images/rabbit.png" id="logo"></a>
+    <a href="home.php" style="position: relative; z-index : 10;"><img src="images/rabbit.png" id="logo" alt="rabbit logo"></a>
 
     <div class="dropdown">
-        <a onclick="dropdown()"><img width="50" height="50" src="images/downarrow.png" class="usericon" id="drop"></a>
+        <a onclick="dropdown()"><img width="50" height="50" src="images/downarrow.png" class="usericon" alt="down arrow" id="drop"></a>
         <div id="myDropdown" class="dropdown-content">
             <a href="signin.php">Sign In</a>
             <a href="signup.php">Sign Up</a>
