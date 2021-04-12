@@ -20,4 +20,5 @@
             <p>Return to <a href="home.php">home page.</a></p>
         </main>
 
+        <?php echo $footer ?>
 </body>
