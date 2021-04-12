@@ -2,21 +2,8 @@
 <html>
 <?php
 
-$host = "localhost";
-$database = "360site";
-$user = "webuser";
-$password = "P@ssw0rd";
-
-$connection = mysqli_connect($host, $user, $password, $database);
-
-$error = mysqli_connect_error();
-if($error != null)
-{
-    $output = "<p>Unable to connect to database!</p>";
-    exit($output);
-}
-else
-{
+include "connect.php";
+$connection = connect();
     //good connection do your thing
     if( isset($_POST['username']) && isset($_POST['password']))
     {
@@ -39,6 +26,10 @@ else
         else
         {
             $row = mysqli_fetch_assoc($results);
+            if($row['role'] == -1) {
+                echo 'This account has been disabled by the administrator.<br>';
+                echo '<a href="../home.php">Return to site home.</a>';
+            } else {
             session_start();
             $_SESSION['authenticated'] = true;
             $_SESSION['userid'] = $row['userId'];
@@ -49,12 +40,13 @@ else
             
             header( "Location: ../home.php" );
         }
+        }
         
         //close connection
         mysqli_free_result($results);
         mysqli_close($connection);
     }
-}
+
 
 
 ?>

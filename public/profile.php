@@ -14,71 +14,75 @@
 </head>
 
 <body>
-    <?php include "header.php";
-    echo $header; 
+<?php 
+include "header.php";
+echo $header; 
 
-    $thisId = $_GET['id'];
+$thisId = $_GET['id'];
 
-    $email = "";
+if(isset($_SESSION["role"])) $role = $_SESSION["role"];
+$email = "";
+$postHistory = "";
+
+include "script/connect.php";
+$connection = connect();
+
+$sql = "SELECT * FROM user WHERE userId ='$thisId'";
+$results = mysqli_query($connection, $sql);
+$count = mysqli_num_rows($results);
+
+if ($count == 0) {
+    header("Location: error_page.php");
+} else {
+    $row = mysqli_fetch_assoc($results);
+    if ($thisId == $userid) $email = $row['email'];
+    $username = $row['displayName'];
+    $profilerole = $row['role'];
+    $joinDate = $row['joinDate'];
+    mysqli_free_result($results);
+    // admin can disable/enable users
+    if($role == 1 && $profilerole != -1) {
+        echo '<form action="script/toggleUserEnable.php" method="GET">
+        <input type="hidden" name="id" value="'.$thisId.'">
+        <input type="hidden" name="toggle" value="disable">
+        <button type="submit">Disable user</button> </form>';
+    } else if($role == 1 && $profilerole == -1) {
+        echo '<form action="script/toggleUserEnable.php" method="GET">
+        <input type="hidden" name="id" value="'.$thisId.'">
+        <input type="hidden" name="toggle" value="enable">
+        <button type="submit">Enable user</button> </form>';
+    }
+    
+}
+
+if (isset($_SESSION['userid'])) {
     $postHistory = "";
 
-    $host = "localhost";
-    $database = "360site";
-    $user = "webuser";
-    $password = "P@ssw0rd";
+    //now query the post history
+    $sql = "SELECT * FROM comments WHERE userId ='$thisId';";
+    $results = mysqli_query($connection, $sql);
+    $count = mysqli_num_rows($results);
 
-    $connection = mysqli_connect($host, $user, $password, $database);
+    if ($count != 0) {
+        //get all the users comments
+        while ($row = mysqli_fetch_assoc($results)){
 
-    $error = mysqli_connect_error();
-    if ($error != null) {
-        $output = "<p>Unable to connect to database!</p>";
-        exit($output);
-    } 
-    
-    else {
-        //signed in do your thing
+            $sql2 = "SELECT title FROM threads WHERE threadId = " . $row['threadId'] . "";
+            $results2 = mysqli_query($connection, $sql2);
+            $row2 = mysqli_fetch_assoc($results2);
 
-        $sql = "SELECT * FROM user WHERE userId ='$thisId';";
-            $results = mysqli_query($connection, $sql);
-            $count = mysqli_num_rows($results);
-
-            if ($count == 0) {
-                header("Location: error_page.php");
-            } else {
-                $row = mysqli_fetch_assoc($results);
-                if ($thisId == $userid) $email = $row['email'];
-                $username = $row['displayName'];
-                $joinDate = $row['joinDate'];
-            }
-
-        if (isset($_SESSION['userid'])) {
-            $postHistory = "";
-
-            //now query the post history
-            $sql = "SELECT * FROM comments WHERE userId ='$thisId';";
-            $results = mysqli_query($connection, $sql);
-            $count = mysqli_num_rows($results);
-
-            if ($count != 0) {
-                //get all the users comments
-                while ($row = mysqli_fetch_assoc($results)){
-
-                    $sql2 = "SELECT title FROM threads WHERE threadId = " . $row['threadId'] . "";
-                    $results2 = mysqli_query($connection, $sql2);
-                    $row2 = mysqli_fetch_assoc($results2);
-
-                    $postHistory = $postHistory ."<a href=\"thread.php?thread=" . $row['threadId'] . "\">". $row2['title'] ."</a>
-                    <div style='float:right; font-size:11px'>" . $row['date'] . "</div> : <p>" . $row['content'] . "</p>";
-                }
-            }
-            else{
-                $postHistory = "<p>User has no post history!</p>";
-            }
+            $postHistory = $postHistory ."<a href=\"thread.php?thread=" . $row['threadId'] . "\">". $row2['title'] ."</a>
+            <div style='float:right; font-size:11px'>" . $row['date'] . "</div> : <p>" . $row['content'] . "</p>";
         }
-        //close connection
         mysqli_free_result($results);
-        mysqli_close($connection);
     }
+    else {
+        $postHistory = "<p>User has no post history!</p>";
+    }
+}   
+//close connection
+mysqli_close($connection);
+    
 
     echo '
     <img src="script/images/' . $thisId . '.jpg" width="150" height="150" class="usericon" alt="User Image" id="profilepage" style="z-index:0"><br><br><br><br><br><br>
@@ -98,7 +102,5 @@
     
     ?>
 
-<?php echo $footer ?>
-</body>
-
-</html>
+<?php echo $footer; ?>
+</body></html>
