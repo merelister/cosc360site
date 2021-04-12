@@ -61,7 +61,7 @@
             echo "<div class=\"post\" style='margin-bottom:0'>";
             // todo: can also include timestamps, rating if needed
             echo "<div style='float:right; font-size:11px'>" . $row['date'] . "</div><a href='profile.php?id=" . $row["userId"] . "'>
-            <img class=\"usericon\" width=\"40\" height=\"40\" style=\"z-index:1\" src=\"script/images/" . $row["userId"] . ".jpg\"></a>
+            <img alt=\"user image\" class=\"usericon\" width=\"40\" height=\"40\" style=\"z-index:1\" src=\"script/images/" . $row["userId"] . ".jpg\"></a>
             <div style='position:relative; top:2.5em; left:0em'>"  . $row["displayName"] . "</div></a>";
             echo "<p style='position:relative; top:-1.3em; left:4em;
             max-width: 28vw;'>" . $row["content"] . "</p>";
