@@ -14,7 +14,8 @@
 </head>
 
 <body>
-    <?php include "header.php";
+<?php 
+include "header.php";
 echo $header; 
 
 $thisId = $_GET['id'];
@@ -38,7 +39,7 @@ if ($count == 0) {
     $username = $row['displayName'];
     $profilerole = $row['role'];
     $joinDate = $row['joinDate'];
-
+    mysqli_free_result($results);
     // admin can disable/enable users
     if($role == 1 && $profilerole != -1) {
         echo '<form action="script/toggleUserEnable.php" method="GET">
@@ -73,13 +74,13 @@ if (isset($_SESSION['userid'])) {
             $postHistory = $postHistory ."<a href=\"thread.php?thread=" . $row['threadId'] . "\">". $row2['title'] ."</a>
             <div style='float:right; font-size:11px'>" . $row['date'] . "</div> : <p>" . $row['content'] . "</p>";
         }
+        mysqli_free_result($results);
     }
     else {
         $postHistory = "<p>User has no post history!</p>";
     }
-    
+}   
 //close connection
-mysqli_free_result($results);
 mysqli_close($connection);
     
 
