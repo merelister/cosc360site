@@ -30,7 +30,7 @@ if ($auth == true && $role == 0) {
                 </div>
             </div>
 
-            <form class="example" action="search.php" method="GET">
+                <form class="example" action="search.php" method="GET">
                 <input type="text" placeholder="Search.." name="search" class="searchbar">
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
@@ -41,11 +41,12 @@ else if ($auth == true && $role == 1) {
     // admin header
     $header = '<header id="header">
             <a href="home.php" style="position: relative; z-index : 10;"><img src="images/rabbit.png" alt="Rabbit Logo" id="logo"></a>
+
             <div class="dropdown">
                 <a onclick="dropdown()"><img class="usericon" alt="User Icon" width="50" height="50" src="script/images/' . $userid . '.jpg"></a>
                 <div id="myDropdown" class="dropdown-content">
                     <a href="profile.php?id=' . $userid . '">Profile</a>
-                    <a href="createThread.php">➕ New Post</a>
+                    <a href="createThread.php">➕ New Thread</a>
                     <a href="signout.php">Sign Out</a>
                     <a onclick="toggleNightMode()" id="nightMode">Night Mode</a>
                     <img id="drop" style="display:none">
@@ -53,6 +54,7 @@ else if ($auth == true && $role == 1) {
             </div>
 
             <form class="example" action="search.php" method="GET">
+            <input type="text" placeholder="Search.." name="search" class="searchbar">
             <button type="submit"><i class="fa fa-search"></i></button>
             </form>
         </header>';
