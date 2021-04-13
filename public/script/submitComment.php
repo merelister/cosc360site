@@ -12,8 +12,9 @@ if($_SERVER["REQUEST_METHOD"] == "GET") {
         $userId = $_SESSION['userid'];
         $content = $_GET["comment"];
         $threadId = $_GET["thread"];
-
+        
         $connection = connect();
+        $content = mysqli_real_escape_string($connection, $content);
 
         $sql = "INSERT INTO comments (threadId, userId, content) VALUES ('$threadId', '$userId', '$content')"; 
         mysqli_query($connection, $sql);

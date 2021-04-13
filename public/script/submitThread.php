@@ -16,7 +16,9 @@ if($_SERVER["REQUEST_METHOD"] == "GET") {
     if(isset($_GET["title"]) && isset($_GET["content"]) && isset($_GET["category"])) {
         //todo: get actual userId
         $title = $_GET["title"];
+        $title = mysqli_real_escape_string($connection, $title);
         $content = $_GET["content"];
+        $content = mysqli_real_escape_string($connection, $content);
         $category = $_GET["category"];
 
         // create the new thread
