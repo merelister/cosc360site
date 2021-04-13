@@ -19,6 +19,7 @@
             <h1>Oops, this page does not exist.</h1>
             <p>Return to <a href="home.php">home page.</a></p>
         </main>
+        <br><br><br>
 
         <?php echo $footer ?>
 </body>
