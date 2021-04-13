@@ -35,9 +35,7 @@ if ($auth == true && $role == 0) {
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>
         </header>';
-} 
-
-else if ($auth == true && $role == 1) {
+} else if ($auth == true && $role == 1) {
     // admin header
     $header = '<header id="header">
             <a href="home.php" style="position: relative; z-index : 10;"><img src="images/rabbit.png" alt="Rabbit Logo" id="logo"></a>
@@ -82,4 +80,23 @@ if ($auth != true) {
 
 $footer = "<br><br><div class='footer'>
                 <i style='font-size:11px'>Copyright © 2021 All rights reserved by Rabbit</i>
+                <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js'></script>
+    <script>
+        //jquery and ajax function used to get the server time in the box
+        function fetchdata() {
+            $.ajax({
+                url: 'serverTime.php',
+                success: function (result) {
+                    $('#time').html(result);
+                }
+            });
+        }
+
+        $(document).ready(function () {
+            setInterval(fetchdata, 1000);
+        });
+    </script>
+
+    <p id='time'></p>
+
             </div>";
